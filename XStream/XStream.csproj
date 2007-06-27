@@ -47,16 +47,17 @@
     <Compile Include="Converters\Collections\CollectionConverterTestCase.cs" />
     <Compile Include="Converters\Collections\ListConverterTest.cs" />
     <Compile Include="Converters\Converter.cs" />
+    <Compile Include="Converters\ConverterTestCase.cs" />
     <Compile Include="Converters\IntConverter.cs" />
     <Compile Include="Converters\IntConverterTest.cs" />
     <Compile Include="Converters\Collections\ListConverter.cs" />
+    <Compile Include="Converters\ObjectConverterTest.cs" />
     <Compile Include="MarshallingContext.cs" />
     <Compile Include="Converters\ObjectConverter.cs" />
     <Compile Include="UnmarshallingContext.cs" />
     <Compile Include="XStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XStreamReader.cs" />
-    <Compile Include="XStreamTest.cs" />
     <Compile Include="XStreamWriter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

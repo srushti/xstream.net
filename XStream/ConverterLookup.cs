@@ -9,20 +9,20 @@ namespace XStream
     public class ConverterLookup
     {
         private static Dictionary<Type, Converter> converters = new Dictionary<Type, Converter>();
+        private static Converter defaultConverter = new ObjectConverter();
 
         static ConverterLookup()
         {
             converters.Add(typeof (int), new IntConverter());
             converters.Add(typeof (Array), new ArrayConverter());
             converters.Add(typeof (IList), new ListConverter());
-            converters.Add(typeof (object), new ObjectConverter());
         }
 
         internal static Converter GetConverter(Type type)
         {
             foreach (KeyValuePair<Type, Converter> pair in converters)
                 if (pair.Value.CanConvert(type)) return pair.Value;
-            return converters[typeof (object)];
+            return defaultConverter;
         }
 
         public static Converter GetConverter(string typeName)

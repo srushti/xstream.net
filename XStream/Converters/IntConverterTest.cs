@@ -4,7 +4,7 @@ using Rhino.Mocks;
 namespace XStream.Converters
 {
     [TestFixture]
-    public class IntConverterTest
+    public class IntConverterTest : ConverterTestCase
     {
         private IntConverter converter = new IntConverter();
 
@@ -28,6 +28,12 @@ namespace XStream.Converters
             mocks.ReplayAll();
             Assert.AreEqual(100, converter.FromXml(reader, new UnmarshallingContext(reader)));
             mocks.VerifyAll();
+        }
+
+        [Test]
+        public void ConvertsInt()
+        {
+            SerialiseAssertAndDeserialise(100, "<System.Int32>100</System.Int32>", Assert.AreEqual);
         }
     }
 }

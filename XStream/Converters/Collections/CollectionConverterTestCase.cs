@@ -4,7 +4,7 @@ using Rhino.Mocks;
 
 namespace XStream.Converters.Collections
 {
-    public class CollectionConverterTestCase
+    public class CollectionConverterTestCase: ConverterTestCase
     {
         protected static void ReadNode(XStreamReader reader, int value)
         {
