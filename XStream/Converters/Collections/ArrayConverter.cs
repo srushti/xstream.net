@@ -12,10 +12,8 @@ namespace XStream.Converters.Collections
         public void ToXml(object value, XStreamWriter writer, MarshallingContext context)
         {
             Array array = (Array) value;
-            writer.StartNode(value.GetType().FullName.Replace("[]", "") + "-array");
             foreach (object o in array)
-                context.ConvertAnother(o);
-            writer.EndNode();
+                context.ConvertOriginal(o);
         }
 
         public object FromXml(XStreamReader reader, UnmarshallingContext context)

@@ -11,9 +11,7 @@ namespace XStream.Converters
 
         public void ToXml(object value, XStreamWriter writer, MarshallingContext context)
         {
-            writer.StartNode("System.Int32");
             writer.SetValue(value.ToString());
-            writer.EndNode();
         }
 
         public object FromXml(XStreamReader reader, UnmarshallingContext context)

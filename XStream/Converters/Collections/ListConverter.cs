@@ -13,10 +13,8 @@ namespace XStream.Converters.Collections
         public void ToXml(object value, XStreamWriter writer, MarshallingContext context)
         {
             IList list = (IList) value;
-            writer.StartNode("list");
             foreach (object o in list)
-                context.ConvertAnother(o);
-            writer.EndNode();
+                context.ConvertOriginal(o);
         }
 
         public object FromXml(XStreamReader reader, UnmarshallingContext context)

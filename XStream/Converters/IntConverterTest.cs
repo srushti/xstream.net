@@ -13,9 +13,7 @@ namespace XStream.Converters
         {
             MockRepository mocks = new MockRepository();
             XStreamWriter writer = mocks.CreateMock<XStreamWriter>();
-            writer.StartNode("System.Int32");
             writer.SetValue(100.ToString());
-            writer.EndNode();
             mocks.ReplayAll();
             converter.ToXml(100, writer, new MarshallingContext(writer));
             mocks.VerifyAll();

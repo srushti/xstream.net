@@ -9,7 +9,8 @@ namespace XStream
             StringBuilder stringBuilder = new StringBuilder();
             XStreamWriter writer = new Writer(stringBuilder);
             MarshallingContext context = new MarshallingContext(writer);
-            context.ConvertAnother(value);
+            System.Console.WriteLine(value.GetType().FullName);
+            context.ConvertOriginal(value);
             return stringBuilder.ToString();
         }
 

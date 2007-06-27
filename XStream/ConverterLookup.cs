@@ -15,13 +15,14 @@ namespace XStream
             converters.Add(typeof (int), new IntConverter());
             converters.Add(typeof (Array), new ArrayConverter());
             converters.Add(typeof (IList), new ListConverter());
+            converters.Add(typeof (object), new ObjectConverter());
         }
 
         internal static Converter GetConverter(Type type)
         {
             foreach (KeyValuePair<Type, Converter> pair in converters)
                 if (pair.Value.CanConvert(type)) return pair.Value;
-            throw new NotImplementedException("Need to implement ObjectConverter");
+            return converters[typeof (object)];
         }
 
         public static Converter GetConverter(string typeName)

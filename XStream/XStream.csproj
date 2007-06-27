@@ -51,6 +51,7 @@
     <Compile Include="Converters\IntConverterTest.cs" />
     <Compile Include="Converters\Collections\ListConverter.cs" />
     <Compile Include="MarshallingContext.cs" />
+    <Compile Include="Converters\ObjectConverter.cs" />
     <Compile Include="UnmarshallingContext.cs" />
     <Compile Include="XStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
