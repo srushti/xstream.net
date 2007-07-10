@@ -1,40 +1,11 @@
+using System.Text;
 using NUnit.Framework;
-using Rhino.Mocks;
 
-namespace XStream.Converters
-{
+namespace XStream.Converters {
     [TestFixture]
-    public class ObjectConverterTest : ConverterTestCase
-    {
-        private ObjectConverter converter = new ObjectConverter();
-
+    public class ObjectConverterTest : ConverterTestCase {
         [Test]
-        public void Marshals()
-        {
-            MockRepository mocks = new MockRepository();
-            XStreamWriter writer = mocks.CreateMock<XStreamWriter>();
-            writer.StartNode("i");
-            writer.SetValue(10.ToString());
-            writer.EndNode();
-            writer.StartNode("array");
-            writer.StartNode("System.Int32");
-            writer.SetValue(11.ToString());
-            writer.EndNode();
-            writer.EndNode();
-            mocks.ReplayAll();
-            converter.ToXml(new ClassForTesting(10, new int[] {11}), writer, new MarshallingContext(writer));
-            mocks.VerifyAll();
-        }
-
-        [Test]
-        public void Unmarshals()
-        {
-            Assert.Fail("not yet implemented");
-        }
-
-        [Test]
-        public void ConvertsObject()
-        {
+        public void ConvertsObject() {
             string serialisedObject =
                 @"<XStream.Converters.ClassForTesting>
     <i>100</i>
@@ -47,28 +18,39 @@ namespace XStream.Converters
         }
     }
 
-    internal class ClassForTesting
-    {
+    internal class ClassForTesting {
         private readonly int i;
         private readonly int[] array;
 
-        public ClassForTesting(int i, int[] array)
-        {
+        private ClassForTesting() {}
+
+        public ClassForTesting(int i, int[] array) : this() {
             this.i = i;
             this.array = array;
         }
 
-        public override bool Equals(object obj)
-        {
+        public override bool Equals(object obj) {
             if (this == obj) return true;
             ClassForTesting classForTesting = obj as ClassForTesting;
             if (classForTesting == null) return false;
-            return i == classForTesting.i && Equals(array, classForTesting.array);
+            return Equals(classForTesting);
         }
 
-        public override int GetHashCode()
-        {
+        private bool Equals(ClassForTesting classForTesting) {
+            if (array.Length != classForTesting.array.Length) return false;
+            for (int index = 0; index < array.Length; index++)
+                if (array[index] != classForTesting.array[index]) return false;
+            return i == classForTesting.i;
+        }
+
+        public override int GetHashCode() {
             return i + 29*array.GetHashCode();
+        }
+
+        public override string ToString() {
+            StringBuilder arrayString = new StringBuilder();
+            foreach (int element in array) arrayString.Append(element.ToString());
+            return i + " " + arrayString;
         }
     }
 }

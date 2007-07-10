@@ -7,12 +7,12 @@ namespace XStream.Converters
     {
         public bool CanConvert(Type type)
         {
-            return true;
+            return false;
         }
 
         public void ToXml(object value, XStreamWriter writer, MarshallingContext context)
         {
-            FieldInfo[] fields = value.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            FieldInfo[] fields = value.GetType().GetFields(Constants.BINDINGFlags);
             foreach (FieldInfo field in fields)
             {
                 writer.StartNode(field.Name);

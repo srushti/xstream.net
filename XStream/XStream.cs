@@ -18,7 +18,7 @@ namespace XStream
         {
             XStreamReader reader = new Reader(s);
             UnmarshallingContext context = new UnmarshallingContext(reader);
-            return context.ConvertAnother();
+            return context.ConvertOriginal();
         }
     }
 }

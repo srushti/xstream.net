@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="ConverterLookup.cs" />
     <Compile Include="Converters\Collections\ArrayConverter.cs" />
     <Compile Include="Converters\Collections\ArrayConverterTest.cs" />
