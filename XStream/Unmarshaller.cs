@@ -23,7 +23,7 @@ namespace XStream {
         private object Unmarshal(Type type) {
             object result = context.Find();
             if (result != null) return result;
-            result = Activator.CreateInstance(type, true);
+            result = DynamicInstanceBuilder.CreateInstance(type);
             context.StackObject(result);
             int count = reader.NoOfChildren();
             if (reader.MoveDown()) {

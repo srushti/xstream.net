@@ -54,6 +54,8 @@ namespace XStream.Converters {
         public Person mother;
         public Person child;
 
+        protected House() {}
+
         public House(Person father, Person mother, Person child) {
             this.father = father;
             this.mother = mother;

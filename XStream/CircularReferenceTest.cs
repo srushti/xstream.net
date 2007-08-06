@@ -56,6 +56,7 @@ namespace XStream {
             if (firstPerson == null || secondPerson == null) Assert.Fail("they are not Persons");
             Assert.AreEqual(firstPerson, secondPerson);
             Assert.AreEqual(firstPerson.likes, secondPerson.likes);
+            if (firstPerson.likes == null) return;
             Assert.AreEqual(firstPerson.likes.likes, secondPerson.likes.likes);
             Assert.AreEqual(secondPerson, secondPerson.likes.likes);
         }
