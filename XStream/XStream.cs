@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 
 namespace XStream {
@@ -7,7 +6,6 @@ namespace XStream {
             StringBuilder stringBuilder = new StringBuilder();
             Writer writer = new Writer(stringBuilder);
             MarshallingContext context = new MarshallingContext(writer);
-            Console.WriteLine(value.GetType().FullName);
             context.ConvertOriginal(value);
             return stringBuilder.ToString();
         }

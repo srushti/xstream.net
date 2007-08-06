@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace XStream {
-    public class XmlStack {
+    internal class XmlStack {
         private readonly Stack<string> nodes = new Stack<string>();
 
         public string CurrentPath {

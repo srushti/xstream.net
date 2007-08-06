@@ -1,9 +1,8 @@
-using System.Collections.Generic;
 using XStream.Converters;
 
 namespace XStream {
     public class MarshallingContext {
-        private readonly Dictionary<object, string> alreadySerialised = new Dictionary<object, string>();
+        private readonly AlreadySerialisedDictionary alreadySerialised = new AlreadySerialisedDictionary();
         private readonly Writer writer;
 
         internal MarshallingContext(Writer writer) {

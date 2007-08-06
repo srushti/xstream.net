@@ -11,7 +11,6 @@ namespace XStream {
             Person lois = new Person("lois");
             clark.likes = lois;
             lois.likes = clark;
-            Console.WriteLine(xstream.ToXml(clark));
             string serialisedPeople =
                 @"<XStream.Person>
     <likes>
@@ -20,16 +19,7 @@ namespace XStream {
     </likes>
     <name>clark</name>
 </XStream.Person>";
-            SerialiseAssertAndDeserialise(clark, serialisedPeople, AssertPersons);
-        }
-
-        private static void AssertPersons(object first, object second) {
-            Person firstPerson = first as Person, secondPerson = second as Person;
-            if (firstPerson == null || secondPerson == null) Assert.Fail("they are not Persons");
-            Assert.AreEqual(firstPerson, secondPerson);
-            Assert.AreEqual(firstPerson.likes, secondPerson.likes);
-            Assert.AreEqual(firstPerson.likes.likes, secondPerson.likes.likes);
-            Assert.AreEqual(secondPerson, secondPerson.likes.likes);
+            SerialiseAssertAndDeserialise(clark, serialisedPeople, Person.AssertPersons);
         }
     }
 
@@ -59,6 +49,15 @@ namespace XStream {
 
         public override string ToString() {
             return name + (likes != null ? (" who likes " + likes.name) : "");
+        }
+
+        internal static void AssertPersons(object first, object second) {
+            Person firstPerson = first as Person, secondPerson = second as Person;
+            if (firstPerson == null || secondPerson == null) Assert.Fail("they are not Persons");
+            Assert.AreEqual(firstPerson, secondPerson);
+            Assert.AreEqual(firstPerson.likes, secondPerson.likes);
+            Assert.AreEqual(firstPerson.likes.likes, secondPerson.likes.likes);
+            Assert.AreEqual(secondPerson, secondPerson.likes.likes);
         }
     }
 }
