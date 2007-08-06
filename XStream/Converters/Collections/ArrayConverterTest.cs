@@ -11,7 +11,7 @@ namespace XStream.Converters.Collections {
     <System.Int32>20</System.Int32>
     <System.Int32>30</System.Int32>
 </System.Int32-array>";
-            SerialiseAssertAndDeserialise(new int[] {10, 20, 30,}, serialisedArray, Assert.AreEqual);
+            SerialiseAssertAndDeserialise(new int[] {10, 20, 30,}, serialisedArray);
         }
     }
 }

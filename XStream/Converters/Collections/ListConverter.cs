@@ -1,29 +1,23 @@
 using System;
 using System.Collections;
 
-namespace XStream.Converters.Collections
-{
-    public class ListConverter : Converter
-    {
-        public bool CanConvert(Type type)
-        {
+namespace XStream.Converters.Collections {
+    internal class ListConverter : Converter {
+        public bool CanConvert(Type type) {
             return typeof (IList).IsAssignableFrom(type);
         }
 
-        public void ToXml(object value, XStreamWriter writer, MarshallingContext context)
-        {
+        public void ToXml(object value, XStreamWriter writer, MarshallingContext context) {
             IList list = (IList) value;
             foreach (object o in list)
                 context.ConvertOriginal(o);
         }
 
-        public object FromXml(XStreamReader reader, UnmarshallingContext context)
-        {
+        public object FromXml(XStreamReader reader, UnmarshallingContext context) {
             IList result = new ArrayList();
             int count = reader.NoOfChildren();
             reader.MoveDown();
-            for (int i = 0; i < count; i++)
-            {
+            for (int i = 0; i < count; i++) {
                 result.Add(context.ConvertAnother());
                 reader.MoveNext();
             }

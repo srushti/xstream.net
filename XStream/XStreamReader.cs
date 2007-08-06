@@ -5,15 +5,15 @@ namespace XStream {
     public interface XStreamReader {
         string GetValue();
         string GetNodeName();
-        void MoveDown();
+        bool MoveDown();
         bool MoveNext();
         void MoveUp();
         int NoOfChildren();
-        string PeekType();
+        string GetAttribute(string attributeName);
     }
 
     internal class Reader : XStreamReader {
-        private XPathNavigator navigator;
+        private readonly XPathNavigator navigator;
 
         public Reader(string s) {
             navigator = new XPathDocument(new StringReader(s)).CreateNavigator();
@@ -28,8 +28,8 @@ namespace XStream {
             return navigator.LocalName;
         }
 
-        public void MoveDown() {
-            navigator.MoveToFirstChild();
+        public bool MoveDown() {
+            return navigator.MoveToFirstChild();
         }
 
         public bool MoveNext() {
@@ -48,6 +48,10 @@ namespace XStream {
             XPathNavigator peekingNavigator = navigator.CreateNavigator();
             peekingNavigator.MoveToFirstChild();
             return peekingNavigator.LocalName;
+        }
+
+        public string GetAttribute(string attributeName) {
+            return navigator.GetAttribute(attributeName, "");
         }
     }
 }

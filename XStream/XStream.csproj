@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CircularReferenceTest.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="ConverterLookup.cs" />
     <Compile Include="Converters\Collections\ArrayConverter.cs" />
@@ -52,9 +53,15 @@
     <Compile Include="Converters\IntConverter.cs" />
     <Compile Include="Converters\IntConverterTest.cs" />
     <Compile Include="Converters\Collections\ListConverter.cs" />
+    <Compile Include="Converters\NullConverter.cs" />
     <Compile Include="Converters\ObjectConverterTest.cs" />
+    <Compile Include="Converters\StringConverter.cs" />
+    <Compile Include="Converters\StringConverterTest.cs" />
+    <Compile Include="Marshaller.cs" />
     <Compile Include="MarshallingContext.cs" />
-    <Compile Include="Converters\ObjectConverter.cs" />
+    <Compile Include="ReaderTest.cs" />
+    <Compile Include="ReleaseTest.cs" />
+    <Compile Include="Unmarshaller.cs" />
     <Compile Include="UnmarshallingContext.cs" />
     <Compile Include="XStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

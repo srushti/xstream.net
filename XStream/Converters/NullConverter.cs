@@ -1,17 +1,17 @@
 using System;
 
 namespace XStream.Converters {
-    internal class IntConverter : Converter {
+    internal class NullConverter : Converter {
         public bool CanConvert(Type type) {
-            return type.Equals(typeof (int));
+            return false;
         }
 
         public void ToXml(object value, XStreamWriter writer, MarshallingContext context) {
-            writer.SetValue(value.ToString());
+            writer.WriteAttribute("null", true.ToString());
         }
 
         public object FromXml(XStreamReader reader, UnmarshallingContext context) {
-            return int.Parse(reader.GetValue());
+            return null;
         }
     }
 }

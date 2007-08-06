@@ -14,7 +14,17 @@ namespace XStream.Converters {
     </array>
 </XStream.Converters.ClassForTesting>";
             ClassForTesting original = new ClassForTesting(100, new int[] {1,});
-            SerialiseAssertAndDeserialise(original, serialisedObject, Assert.AreEqual);
+            SerialiseAssertAndDeserialise(original, serialisedObject);
+        }
+
+        [Test]
+        public void ConvertsPerson() {
+            string serialisedPerson = @"<XStream.Person>
+    <likes null=""True""/>
+    <name>john</name>
+</XStream.Person>";
+            Person person = new Person("john");
+            SerialiseAssertAndDeserialise(person, serialisedPerson);
         }
     }
 
