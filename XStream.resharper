@@ -318,12 +318,18 @@
       <Folder name="Shared Solution Templates">
         <Folder name="Test">
           <Template uid="c0b95d48-cef0-4b84-af46-f8ee7db232c2" text="[Test]&#xD;&#xA;public void $MethodName$(){&#xD;&#xA;$END$Assert.Fail(&quot;not yet implemented&quot;);&#xD;&#xA;}" shortcut="test" description="create test method" reformat="true" shortenQualifiedReferences="true">
+            <Context>
+              <CSharpContext context="TypeMember" />
+            </Context>
             <Variables>
               <Variable name="MethodName" expression="" initialRange="0" />
             </Variables>
             <CustomProperties />
           </Template>
           <Template uid="2c169869-acf1-44ec-9f51-41a15347a6c0" text="[SetUp]&#xD;&#xA;public void SetUp()&#xD;&#xA;{&#xD;&#xA;   &#xD;&#xA;}" shortcut="setup" description="test setup" reformat="true" shortenQualifiedReferences="true">
+            <Context>
+              <CSharpContext context="TypeMember" />
+            </Context>
             <Variables />
             <CustomProperties />
           </Template>

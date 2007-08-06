@@ -7,20 +7,29 @@ namespace XStream {
     public class CircularReferenceTest : ConverterTestCase {
         [Test]
         public void HandlesCircularReferences() {
-            Person john = new Person("john");
-            Person jane = new Person("jane");
-            john.likes = jane;
-//            jane.likes = john;
-            Console.WriteLine(xstream.ToXml(john));
+            Person clark = new Person("clark");
+            Person lois = new Person("lois");
+            clark.likes = lois;
+            lois.likes = clark;
+            Console.WriteLine(xstream.ToXml(clark));
             string serialisedPeople =
                 @"<XStream.Person>
     <likes>
-        <likes null=""True"" />
-        <name>jane</name>
+        <likes references=""/XStream.Person"" />
+        <name>lois</name>
     </likes>
-    <name>john</name>
+    <name>clark</name>
 </XStream.Person>";
-            SerialiseAssertAndDeserialise(john, serialisedPeople);
+            SerialiseAssertAndDeserialise(clark, serialisedPeople, AssertPersons);
+        }
+
+        private static void AssertPersons(object first, object second) {
+            Person firstPerson = first as Person, secondPerson = second as Person;
+            if (firstPerson == null || secondPerson == null) Assert.Fail("they are not Persons");
+            Assert.AreEqual(firstPerson, secondPerson);
+            Assert.AreEqual(firstPerson.likes, secondPerson.likes);
+            Assert.AreEqual(firstPerson.likes.likes, secondPerson.likes.likes);
+            Assert.AreEqual(secondPerson, secondPerson.likes.likes);
         }
     }
 
@@ -36,7 +45,7 @@ namespace XStream {
 
         public bool Equals(Person person) {
             if (person == null) return false;
-            return Equals(likes, person.likes) && Equals(name, person.name);
+            return Equals(name, person.name);
         }
 
         public override bool Equals(object obj) {
@@ -45,11 +54,11 @@ namespace XStream {
         }
 
         public override int GetHashCode() {
-            return (likes != null ? likes.GetHashCode() : 0) + 29*(name != null ? name.GetHashCode() : 0);
+            return name != null ? name.GetHashCode() : 0;
         }
 
         public override string ToString() {
-            return name + (likes != null ? (" likes " + likes.name) : "");
+            return name + (likes != null ? (" who likes " + likes.name) : "");
         }
     }
 }

@@ -1,19 +1,22 @@
-using System.Collections;
+using System.Collections.Generic;
 using XStream.Converters;
 
 namespace XStream {
     public class MarshallingContext {
-        private readonly Stack stack = new Stack();
-        private readonly XStreamWriter writer;
+        private readonly Dictionary<object, string> alreadySerialised = new Dictionary<object, string>();
+        private readonly Writer writer;
 
-        public MarshallingContext(XStreamWriter writer) {
+        internal MarshallingContext(Writer writer) {
             this.writer = writer;
         }
 
         public void ConvertAnother(object value) {
-            if (stack.Contains(value)) return;
-            stack.Push(value);
-            ConvertObject(value);
+            if (alreadySerialised.ContainsKey(value))
+                writer.WriteAttribute("references", alreadySerialised[value]);
+            else {
+                alreadySerialised.Add(value, writer.CurrentPath);
+                ConvertObject(value);
+            }
         }
 
         private void ConvertObject(object value) {

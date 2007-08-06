@@ -24,16 +24,14 @@ namespace XStream {
             object result = Activator.CreateInstance(type, true);
             int count = reader.NoOfChildren();
             if (reader.MoveDown()) {
-                //            FieldInfo[] fields = type.GetFields(Constants.BINDINGFlags);
                 for (int i = 0; i < count; i++) {
                     FieldInfo field = type.GetField(reader.GetNodeName(), Constants.BINDINGFlags);
                     field.SetValue(result, ConvertField(field.FieldType));
                     reader.MoveNext();
                 }
-                //            foreach (FieldInfo field in fields)
-                //                field.SetValue(result, ConverterLookup.GetConverter(field.FieldType).FromXml(reader, context));
                 reader.MoveUp();
-            }else {
+            }
+            else {
                 if (reader.GetAttribute("null") == true.ToString())
                     return null;
             }
