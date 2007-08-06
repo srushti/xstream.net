@@ -14,10 +14,16 @@ namespace XStream {
 
     internal class Reader : XStreamReader {
         private readonly XPathNavigator navigator;
+        private XmlStack stack = new XmlStack();
 
         public Reader(string s) {
             navigator = new XPathDocument(new StringReader(s)).CreateNavigator();
             navigator.MoveToChild(XPathNodeType.Element);
+            stack.Push(GetNodeName());
+        }
+
+        public string CurrentPath {
+            get { return stack.CurrentPath; }
         }
 
         public string GetValue() {
@@ -29,15 +35,23 @@ namespace XStream {
         }
 
         public bool MoveDown() {
-            return navigator.MoveToFirstChild();
+            bool succeeded = navigator.MoveToFirstChild();
+            if (succeeded) stack.Push(GetNodeName());
+            return succeeded;
         }
 
         public bool MoveNext() {
-            return navigator.MoveToNext();
+            bool succeeded = navigator.MoveToNext();
+            if (succeeded) {
+                stack.Pop();
+                stack.Push(GetNodeName());
+            }
+            return succeeded;
         }
 
         public void MoveUp() {
-            navigator.MoveToParent();
+            if (navigator.MoveToParent())
+                stack.Pop();
         }
 
         public int NoOfChildren() {

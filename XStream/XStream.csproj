@@ -63,6 +63,8 @@
     <Compile Include="ReleaseTest.cs" />
     <Compile Include="Unmarshaller.cs" />
     <Compile Include="UnmarshallingContext.cs" />
+    <Compile Include="XmlStack.cs" />
+    <Compile Include="XmlStackTest.cs" />
     <Compile Include="XStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XStreamReader.cs" />

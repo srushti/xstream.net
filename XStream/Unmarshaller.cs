@@ -21,7 +21,10 @@ namespace XStream {
         }
 
         private object Unmarshal(Type type) {
-            object result = Activator.CreateInstance(type, true);
+            object result = context.Find();
+            if (result != null) return result;
+            result = Activator.CreateInstance(type, true);
+            context.StackObject(result);
             int count = reader.NoOfChildren();
             if (reader.MoveDown()) {
                 for (int i = 0; i < count; i++) {

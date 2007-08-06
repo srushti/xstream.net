@@ -24,12 +24,21 @@ namespace XStream {
 
         [Test]
         public void MovesToNextNode() {
-            reader.GetNodeName();
             Assert.AreEqual(2, reader.NoOfChildren());
             reader.MoveDown();
-            reader.GetNodeName();
             reader.MoveNext();
             Assert.AreEqual("inner2", reader.GetNodeName());
+        }
+
+        [Test]
+        public void GetsCurrentPath() {
+            Assert.AreEqual("/Outer", reader.CurrentPath);
+            reader.MoveDown();
+            Assert.AreEqual("/Outer/inner1", reader.CurrentPath);
+            reader.MoveNext();
+            Assert.AreEqual("/Outer/inner2", reader.CurrentPath);
+            reader.MoveUp();
+            Assert.AreEqual("/Outer", reader.CurrentPath);
         }
     }
 }
