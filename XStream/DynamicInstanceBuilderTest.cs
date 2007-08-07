@@ -7,7 +7,7 @@ namespace XStream {
     public class DynamicInstanceBuilderTest {
         [Test]
         public void InstantiatesClassWithParameterlessConstructor() {
-            Assert.AreEqual(false, typeof(House).IsPublic);
+            Assert.AreEqual(false, typeof (House).IsPublic);
             Assert.AreNotEqual(null, DynamicInstanceBuilder.CreateInstance(typeof (House)));
         }
 

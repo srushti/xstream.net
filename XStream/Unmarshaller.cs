@@ -42,6 +42,8 @@ namespace XStream {
         }
 
         private object ConvertField(Type fieldType) {
+            string classAttribute = reader.GetAttribute("class");
+            if (!string.IsNullOrEmpty(classAttribute)) fieldType = Type.GetType(classAttribute);
             Converter converter = ConverterLookup.GetConverter(fieldType);
             if (converter != null)
                 return converter.FromXml(reader, context);

@@ -52,8 +52,7 @@ namespace XStream {
         }
 
         internal static void AssertPersons(object first, object second) {
-            Person firstPerson = first as Person, secondPerson = second as Person;
-            if (firstPerson == null || secondPerson == null) Assert.Fail("they are not Persons");
+            Person firstPerson = (Person) first, secondPerson = (Person) second;
             Assert.AreEqual(firstPerson, secondPerson);
             Assert.AreEqual(firstPerson.likes, secondPerson.likes);
             if (firstPerson.likes == null) return;

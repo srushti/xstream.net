@@ -47,6 +47,15 @@ namespace XStream.Converters {
             House house = new House(new Person("dad"), new Person("mom"), new Person("kid"));
             SerialiseAssertAndDeserialise(house, serialisedHouse, House.AssertHouse);
         }
+
+        [Test]
+        public void HandlesAmbiguousReferences() {
+            string serialisedHolder = @"<XStream.Converters.AmbiguousReferenceHolder>
+    <o class=""System.String"">x</o>
+</XStream.Converters.AmbiguousReferenceHolder>";
+            AmbiguousReferenceHolder holder = new AmbiguousReferenceHolder("x");
+            SerialiseAssertAndDeserialise(holder, serialisedHolder, AmbiguousReferenceHolder.AssertHolder);
+        }
     }
 
     internal class House {
@@ -65,8 +74,7 @@ namespace XStream.Converters {
         }
 
         public static void AssertHouse(object first, object second) {
-            House firstHouse = first as House, secondHouse = second as House;
-            if (firstHouse == null || secondHouse == null) Assert.Fail("they are not Houses");
+            House firstHouse = (House) first, secondHouse = (House) second;
             Person.AssertPersons(firstHouse.father, secondHouse.father);
             Person.AssertPersons(firstHouse.mother, secondHouse.mother);
             Person.AssertPersons(firstHouse.child, secondHouse.child);
@@ -106,6 +114,21 @@ namespace XStream.Converters {
             StringBuilder arrayString = new StringBuilder();
             foreach (int element in array) arrayString.Append(element.ToString());
             return i + " " + arrayString;
+        }
+    }
+
+    internal class AmbiguousReferenceHolder {
+        public object o;
+
+        protected AmbiguousReferenceHolder() {}
+
+        public AmbiguousReferenceHolder(object o) {
+            this.o = o;
+        }
+
+        public static void AssertHolder(object x, object y) {
+            AmbiguousReferenceHolder first = (AmbiguousReferenceHolder) x, second = (AmbiguousReferenceHolder) y;
+            Assert.AreEqual(first.o, second.o);
         }
     }
 }
