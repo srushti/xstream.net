@@ -43,7 +43,7 @@ namespace XStream {
 
         private object ConvertField(Type fieldType) {
             string classAttribute = reader.GetAttribute("class");
-            if (!string.IsNullOrEmpty(classAttribute)) fieldType = Type.GetType(classAttribute);
+            if (!string.IsNullOrEmpty(classAttribute)) fieldType = Type.GetType(classAttribute.Replace("-array", "[]"));
             Converter converter = ConverterLookup.GetConverter(fieldType);
             if (converter != null)
                 return converter.FromXml(reader, context);

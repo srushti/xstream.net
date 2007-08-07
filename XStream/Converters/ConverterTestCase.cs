@@ -5,13 +5,21 @@ namespace XStream.Converters {
         protected XStream xstream = new XStream();
 
         internal void SerialiseAssertAndDeserialise(object value, string expectedSerialisedObject, AssertEqualsDelegate equalsDelegate) {
-            string actualSerialisedObject = xstream.ToXml(value);
-            EqualsIgnoreWhitespace(expectedSerialisedObject, actualSerialisedObject);
-            equalsDelegate(value, xstream.FromXml(actualSerialisedObject));
+            EqualsIgnoreWhitespace(expectedSerialisedObject, SerialiseAndDeserialise(value, equalsDelegate));
         }
 
         internal void SerialiseAssertAndDeserialise(object value, string expectedSerialisedObject) {
             SerialiseAssertAndDeserialise(value, expectedSerialisedObject, Assert.AreEqual);
+        }
+
+        internal string SerialiseAndDeserialise(object value) {
+            return SerialiseAndDeserialise(value, Assert.AreEqual);
+        }
+
+        internal string SerialiseAndDeserialise(object value, AssertEqualsDelegate equalsDelegate) {
+            string actualSerialisedObject = xstream.ToXml(value);
+            equalsDelegate(value, xstream.FromXml(actualSerialisedObject));
+            return actualSerialisedObject;
         }
 
         private static void EqualsIgnoreWhitespace(string expected, string actual) {

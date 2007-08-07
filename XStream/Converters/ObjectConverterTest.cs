@@ -50,11 +50,13 @@ namespace XStream.Converters {
 
         [Test]
         public void HandlesAmbiguousReferences() {
-            string serialisedHolder = @"<XStream.Converters.AmbiguousReferenceHolder>
+            string serialisedHolder =
+                @"<XStream.Converters.AmbiguousReferenceHolder>
     <o class=""System.String"">x</o>
 </XStream.Converters.AmbiguousReferenceHolder>";
             AmbiguousReferenceHolder holder = new AmbiguousReferenceHolder("x");
             SerialiseAssertAndDeserialise(holder, serialisedHolder, AmbiguousReferenceHolder.AssertHolder);
+            SerialiseAndDeserialise(new AmbiguousReferenceHolder(new string[] {"1", "2"}), AmbiguousReferenceHolder.AssertHolder);
         }
     }
 

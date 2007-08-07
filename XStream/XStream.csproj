@@ -65,6 +65,7 @@
     <Compile Include="MarshallingContext.cs" />
     <Compile Include="ReaderTest.cs" />
     <Compile Include="ReleaseTest.cs" />
+    <Compile Include="TODO.cs" />
     <Compile Include="Unmarshaller.cs" />
     <Compile Include="UnmarshallingContext.cs" />
     <Compile Include="XmlStack.cs" />
