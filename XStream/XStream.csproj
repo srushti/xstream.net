@@ -72,6 +72,7 @@
     <Compile Include="XmlStackTest.cs" />
     <Compile Include="XStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XStreamAssert.cs" />
     <Compile Include="XStreamReader.cs" />
     <Compile Include="XStreamWriter.cs" />
   </ItemGroup>

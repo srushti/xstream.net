@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using NUnit.Framework;
 
@@ -9,7 +10,7 @@ namespace XStream.Converters {
             string serialisedObject =
                 @"<XStream.Converters.ClassForTesting>
     <i>100</i>
-    <array>
+    <array array-type=""System.Int32"">
         <System.Int32>1</System.Int32>
     </array>
 </XStream.Converters.ClassForTesting>";
@@ -54,9 +55,13 @@ namespace XStream.Converters {
                 @"<XStream.Converters.AmbiguousReferenceHolder>
     <o class=""System.String"">x</o>
 </XStream.Converters.AmbiguousReferenceHolder>";
-            AmbiguousReferenceHolder holder = new AmbiguousReferenceHolder("x");
-            SerialiseAssertAndDeserialise(holder, serialisedHolder, AmbiguousReferenceHolder.AssertHolder);
+            SerialiseAssertAndDeserialise(new AmbiguousReferenceHolder("x"), serialisedHolder, AmbiguousReferenceHolder.AssertHolder);
             SerialiseAndDeserialise(new AmbiguousReferenceHolder(new string[] {"1", "2"}), AmbiguousReferenceHolder.AssertHolder);
+        }
+
+        [Test]
+        public void WorksWithArraysHoldingDerivedTypes() {
+            SerialiseAndDeserialise(new object[] {1, 2, "222", new AmbiguousReferenceHolder(new string[] {})}, XStreamAssert.AreEqual);
         }
     }
 
@@ -119,7 +124,7 @@ namespace XStream.Converters {
         }
     }
 
-    internal class AmbiguousReferenceHolder {
+    internal class AmbiguousReferenceHolder : IEquatable<AmbiguousReferenceHolder> {
         public object o;
 
         protected AmbiguousReferenceHolder() {}
@@ -128,9 +133,39 @@ namespace XStream.Converters {
             this.o = o;
         }
 
-        public static void AssertHolder(object x, object y) {
-            AmbiguousReferenceHolder first = (AmbiguousReferenceHolder) x, second = (AmbiguousReferenceHolder) y;
-            Assert.AreEqual(first.o, second.o);
+        public bool Equals(AmbiguousReferenceHolder ambiguousReferenceHolder) {
+            if (ambiguousReferenceHolder == null) return false;
+            AmbiguousReferenceHolder first = this, second = ambiguousReferenceHolder;
+            if (first.o.GetType().IsArray) {
+                Array thisArray = (Array) first.o;
+                Array otherArray = (Array) second.o;
+                for (int i = 0; i < thisArray.Length; i++)
+                    if (!thisArray.GetValue(i).Equals(otherArray.GetValue(i))) return false;
+                return true;
+            }
+            return o.Equals(ambiguousReferenceHolder.o);
+        }
+
+        public override bool Equals(object obj) {
+            if (ReferenceEquals(this, obj)) return true;
+            return Equals(obj as AmbiguousReferenceHolder);
+        }
+
+        public override int GetHashCode() {
+            return o != null ? o.GetHashCode() : 0;
+        }
+
+        public static void AssertHolder(object x, object y) {}
+
+        public override string ToString() {
+            if (o == null) return "";
+            if (o.GetType().IsArray) {
+                StringBuilder builder = new StringBuilder("ambiguousreferenceholder with array:");
+                for (int i = 0; i < ((Array) o).Length; i++)
+                    builder.Append(i + " " + ((Array) o).GetValue(i) + " ");
+                return builder.ToString();
+            }
+            return "ambiguousreferenceholder with " + o;
         }
     }
 }

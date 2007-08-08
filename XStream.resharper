@@ -435,6 +435,13 @@
             </Variables>
             <CustomProperties />
           </Template>
+          <Template uid="1fea2159-c282-43f7-b324-917e37b89cbd" text="//todo:$END$" shortcut="todo" description="" reformat="true" shortenQualifiedReferences="true">
+            <Context>
+              <CSharpContext context="Everywhere" />
+            </Context>
+            <Variables />
+            <CustomProperties />
+          </Template>
         </Folder>
       </Folder>
     </LiveTemplates>

@@ -21,10 +21,6 @@ namespace XStream {
             return converter.FromXml(reader, this);
         }
 
-        public Type LookupArrayType() {
-            return Type.GetType(reader.PeekType());
-        }
-
         public object ConvertOriginal() {
             return new Unmarshaller(reader, this).Unmarshal();
         }
