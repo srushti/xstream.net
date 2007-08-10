@@ -9,15 +9,16 @@ namespace XStream.Converters {
         }
 
         internal void SerialiseAssertAndDeserialise(object value, string expectedSerialisedObject) {
-            SerialiseAssertAndDeserialise(value, expectedSerialisedObject, Assert.AreEqual);
+            SerialiseAssertAndDeserialise(value, expectedSerialisedObject, XStreamAssert.AreEqual);
         }
 
         internal string SerialiseAndDeserialise(object value) {
-            return SerialiseAndDeserialise(value, Assert.AreEqual);
+            return SerialiseAndDeserialise(value, XStreamAssert.AreEqual);
         }
 
         internal string SerialiseAndDeserialise(object value, AssertEqualsDelegate equalsDelegate) {
             string actualSerialisedObject = xstream.ToXml(value);
+            System.Console.WriteLine(actualSerialisedObject);
             equalsDelegate(value, xstream.FromXml(actualSerialisedObject));
             return actualSerialisedObject;
         }

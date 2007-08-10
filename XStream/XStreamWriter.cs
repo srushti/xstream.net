@@ -7,7 +7,8 @@ namespace XStream {
         void StartNode(string name);
         void SetValue(string value);
         void EndNode();
-        void WriteAttribute(string name, string value);
+        void WriteAttribute(string name, object value);
+        void StartCollectionNode(string name, int index);
     }
 
     internal class Writer : XStreamWriter {
@@ -27,6 +28,11 @@ namespace XStream {
             stack.Push(name);
         }
 
+        public void StartCollectionNode(string name, int index) {
+            textWriter.WriteStartElement(name);
+            stack.Push(name + "[" + index + "]");
+        }
+
         public void SetValue(string value) {
             textWriter.WriteValue(value);
         }
@@ -36,9 +42,9 @@ namespace XStream {
             stack.Pop();
         }
 
-        public void WriteAttribute(string name, string value) {
+        public void WriteAttribute(string name, object value) {
             textWriter.WriteStartAttribute(name);
-            textWriter.WriteValue(value);
+            textWriter.WriteValue(value.ToString());
             textWriter.WriteEndAttribute();
         }
     }

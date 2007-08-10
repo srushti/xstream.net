@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace XStream {
     internal class AlreadySerialisedDictionary {
-        private readonly Dictionary<object, string> dictionary = new Dictionary<object, string>();
+        private readonly Dictionary<object, string> dictionary = new Dictionary<object, string>(new ReferenceComparer());
 
         public bool ContainsKey(object value) {
             if (value == null) return false;

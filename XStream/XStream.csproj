@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlreadySerialisedDictionary.cs" />
+    <Compile Include="Attributes.cs" />
     <Compile Include="CircularReferenceTest.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="ConversionException.cs" />
@@ -61,13 +62,18 @@
     <Compile Include="Converters\StringConverterTest.cs" />
     <Compile Include="DynamicInstanceBuilder.cs" />
     <Compile Include="DynamicInstanceBuilderTest.cs" />
+    <Compile Include="GenericsTest.cs" />
     <Compile Include="Marshaller.cs" />
     <Compile Include="MarshallingContext.cs" />
     <Compile Include="ReaderTest.cs" />
+    <Compile Include="ReferenceComparer.cs" />
     <Compile Include="ReleaseTest.cs" />
+    <Compile Include="S.cs" />
     <Compile Include="TODO.cs" />
     <Compile Include="Unmarshaller.cs" />
     <Compile Include="UnmarshallingContext.cs" />
+    <Compile Include="Xmlifier.cs" />
+    <Compile Include="XmlifierTest.cs" />
     <Compile Include="XmlStack.cs" />
     <Compile Include="XmlStackTest.cs" />
     <Compile Include="XStream.cs" />

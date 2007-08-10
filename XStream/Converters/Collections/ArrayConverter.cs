@@ -18,16 +18,7 @@ namespace XStream.Converters.Collections {
             Array result = Array.CreateInstance(Type.GetType(reader.GetAttribute("array-type")), count);
             reader.MoveDown();
             for (int i = 0; i < count; i++) {
-                object converted = context.ConvertAnother();
-                try {
-                    result.SetValue(converted, i);
-                }
-                catch (InvalidCastException) {
-                    Console.WriteLine(result.GetType());
-                    Console.WriteLine(converted.GetType());
-                    Console.WriteLine(converted);
-                    throw;
-                }
+                result.SetValue(context.ConvertAnother(), i);
                 reader.MoveNext();
             }
             reader.MoveUp();

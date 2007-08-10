@@ -7,7 +7,7 @@ namespace XStream.Converters.Collections {
         [Test]
         public void ConvertsList() {
             string serialisedList =
-                @"<System.Collections.ArrayList>
+                @"<System.Collections.ArrayList list-type=""System.Collections.ArrayList"">
     <System.Int32>1</System.Int32>
     <System.Int32>20</System.Int32>
     <System.Int32>300</System.Int32>

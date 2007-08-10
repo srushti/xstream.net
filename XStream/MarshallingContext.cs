@@ -1,3 +1,4 @@
+using System;
 using XStream.Converters;
 
 namespace XStream {
@@ -11,7 +12,7 @@ namespace XStream {
 
         public void ConvertAnother(object value) {
             if (alreadySerialised.ContainsKey(value))
-                writer.WriteAttribute("references", alreadySerialised[value]);
+                writer.WriteAttribute(Attributes.references, alreadySerialised[value]);
             else {
                 alreadySerialised.Add(value, writer.CurrentPath);
                 ConvertObject(value);
@@ -32,8 +33,29 @@ namespace XStream {
             writer.EndNode();
         }
 
+//        public void ConvertOriginal(object value, int index) {
+//            StartNode(value, index);
+//            ConvertAnother(value);
+//            writer.EndNode();
+//        }
+
         private void StartNode(object value) {
-            writer.StartNode(value.GetType().FullName.Replace("[]", "-array"));
+            Type type = value.GetType();
+            writer.StartNode(Xmlifier.XmlifyAndRemoveGenerics(type));
+            if (type.IsGenericType) AddGenericAttributes(type);
         }
+
+        private void AddGenericAttributes(Type type) {
+            Type[] genericArguments = type.GetGenericArguments();
+            writer.WriteAttribute(Attributes.numberOfGenericArgs, genericArguments.Length);
+            for (int i = 0; i < genericArguments.Length; i++) {
+                Type genericArgument = genericArguments[i];
+                writer.WriteAttribute(Attributes.GenericArg(i), Xmlifier.Xmlify(genericArgument));
+            }
+        }
+
+//        private void StartNode(object value, int index) {
+//            writer.StartCollectionNode(value.GetType().FullName.Replace("[]", "-array"), index);
+//        }
     }
 }

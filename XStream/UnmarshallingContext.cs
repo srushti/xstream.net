@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using XStream.Converters;
 
@@ -30,7 +29,7 @@ namespace XStream {
         }
 
         public object Find() {
-            string referencesAttribute = reader.GetAttribute("references");
+            string referencesAttribute = reader.GetAttribute(Attributes.references);
             if (!string.IsNullOrEmpty(referencesAttribute)) return alreadyDeserialised[referencesAttribute];
             return null;
         }
