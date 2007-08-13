@@ -31,7 +31,7 @@ namespace XStream {
             if (fieldValue == null) return;
             Type actualType = fieldValue.GetType();
             if (!field.FieldType.Equals(actualType))
-                writer.WriteAttribute("class", Xmlifier.Xmlify(actualType));
+                writer.WriteAttribute("class", actualType.FullName);
         }
     }
 }

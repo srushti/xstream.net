@@ -1,7 +1,7 @@
 using System;
 using NUnit.Framework;
 using XStream.Converters;
-    
+
 namespace XStream {
     [TestFixture]
     public class GenericsTest : ConverterTestCase {

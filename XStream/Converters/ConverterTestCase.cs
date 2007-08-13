@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 
 namespace XStream.Converters {
@@ -18,7 +19,7 @@ namespace XStream.Converters {
 
         internal string SerialiseAndDeserialise(object value, AssertEqualsDelegate equalsDelegate) {
             string actualSerialisedObject = xstream.ToXml(value);
-            System.Console.WriteLine(actualSerialisedObject);
+            Console.WriteLine(actualSerialisedObject);
             equalsDelegate(value, xstream.FromXml(actualSerialisedObject));
             return actualSerialisedObject;
         }

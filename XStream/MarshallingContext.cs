@@ -41,8 +41,9 @@ namespace XStream {
 
         private void StartNode(object value) {
             Type type = value.GetType();
-            writer.StartNode(Xmlifier.XmlifyAndRemoveGenerics(type));
+            writer.StartNode(Xmlifier.Xmlify(type));
             if (type.IsGenericType) AddGenericAttributes(type);
+            else if (type.IsArray && type.GetElementType().IsGenericType) AddGenericAttributes(type);
         }
 
         private void AddGenericAttributes(Type type) {
@@ -50,7 +51,7 @@ namespace XStream {
             writer.WriteAttribute(Attributes.numberOfGenericArgs, genericArguments.Length);
             for (int i = 0; i < genericArguments.Length; i++) {
                 Type genericArgument = genericArguments[i];
-                writer.WriteAttribute(Attributes.GenericArg(i), Xmlifier.Xmlify(genericArgument));
+                writer.WriteAttribute(Attributes.GenericArg(i), genericArgument.FullName);
             }
         }
 

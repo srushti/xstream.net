@@ -27,9 +27,10 @@ namespace XStream {
         }
 
         private Type GetGenericType(string typeName, int noOfGenericArgs) {
-            Type genericType = Type.GetType(typeName + "`" + noOfGenericArgs);
+            Type genericType = Type.GetType(S.RemoveFrom(typeName, "[]") + "`" + noOfGenericArgs);
             Type[] genericArgs = new Type[noOfGenericArgs];
             for (int i = 0; i < noOfGenericArgs; i++) genericArgs[i] = Type.GetType(Xmlifier.UnXmlify(reader.GetAttribute(Attributes.GenericArg(i))));
+            if (typeName.Contains("[]")) return genericType.MakeArrayType();
             return genericType.MakeGenericType(genericArgs);
         }
 
