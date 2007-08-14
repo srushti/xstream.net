@@ -7,7 +7,6 @@ namespace XStream {
     public class GenericsTest : ConverterTestCase {
         [Test]
         public void WorksWithAGenericClass() {
-            Console.WriteLine(xstream.ToXml(new GenericObject<int>(1)));
             SerialiseAndDeserialise(new GenericObject<int>(1));
         }
 
