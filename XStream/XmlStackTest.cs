@@ -17,5 +17,16 @@ namespace XStream {
             stack.Push("bbb");
             Assert.AreEqual("/aaa/bbb", stack.CurrentPath);
         }
+
+        [Test]
+        public void AddsIndexNumberIfArrayElement() {
+            stack.Push("aaa");
+            stack.Pop();
+            stack.Push("aaa");
+            Assert.AreEqual("/aaa[1]", stack.CurrentPath);
+            stack.Pop();
+            stack.Push("aaa");
+            Assert.AreEqual("/aaa[2]", stack.CurrentPath);
+        }
     }
 }

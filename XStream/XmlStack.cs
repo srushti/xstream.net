@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace XStream {
     internal class XmlStack {
         private readonly Stack<string> nodes = new Stack<string>();
+        private string justPopped = string.Empty;
 
         public string CurrentPath {
             get {
@@ -16,11 +18,14 @@ namespace XStream {
         }
 
         public void Push(string node) {
+            if (justPopped.Equals(node)) node = node + "[1]";
+            Match match = Regex.Match(justPopped, node + @"\[(\d)\]");
+            if (match.Success) node = node + "[" + (int.Parse(match.Result("$1")) + 1) + "]";
             nodes.Push(node);
         }
 
-        public string Pop() {
-            return nodes.Pop();
+        public void Pop() {
+            justPopped = nodes.Pop();
         }
     }
 }

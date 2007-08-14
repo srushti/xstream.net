@@ -16,7 +16,8 @@ namespace XStream.Converters.Collections {
 
         [Test]
         public void FiguresOutRepeatingObjectsEvenThroughArrays() {
-            object[] objects = new object[] {"", new AmbiguousReferenceHolder(new Person("gl")), new AmbiguousReferenceHolder(new Person("gl")),};
+            AmbiguousReferenceHolder duplicateObject = new AmbiguousReferenceHolder(new Person("gl"));
+            object[] objects = new object[] {"", duplicateObject, duplicateObject,};
             SerialiseAndDeserialise(objects);
             objects = (object[]) xstream.FromXml(xstream.ToXml(objects));
             Assert.AreSame(objects[1], objects[2]);
