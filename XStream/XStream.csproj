@@ -53,11 +53,11 @@
     <Compile Include="Converters\Collections\ListConverterTest.cs" />
     <Compile Include="Converters\Converter.cs" />
     <Compile Include="Converters\ConverterTestCase.cs" />
-    <Compile Include="Converters\IntConverter.cs" />
-    <Compile Include="Converters\IntConverterTest.cs" />
+    <Compile Include="Converters\SingleValueConverterTest.cs" />
     <Compile Include="Converters\Collections\ListConverter.cs" />
     <Compile Include="Converters\NullConverter.cs" />
     <Compile Include="Converters\ObjectConverterTest.cs" />
+    <Compile Include="Converters\SingleValueConverter.cs" />
     <Compile Include="Converters\StringConverter.cs" />
     <Compile Include="Converters\StringConverterTest.cs" />
     <Compile Include="DynamicInstanceBuilder.cs" />

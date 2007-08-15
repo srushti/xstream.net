@@ -11,7 +11,12 @@ namespace XStream {
                 return;
             }
             else if (expected is Person && actual is Person) Person.AssertPersons(expected, actual);
+            else if (expected is DateTime && actual is DateTime) AssertDateTime(expected, actual);
             else Assert.AreEqual(expected, actual);
+        }
+
+        private static void AssertDateTime(object expected, object actual) {
+            Assert.AreEqual(expected.ToString(), actual.ToString());
         }
     }
 }
