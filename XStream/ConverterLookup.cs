@@ -13,7 +13,8 @@ namespace XStream {
             converters.Add(typeof (int), new SingleValueConverter<int>(int.Parse));
             converters.Add(typeof (DateTime), new SingleValueConverter<DateTime>(DateTime.Parse));
             converters.Add(typeof (double), new SingleValueConverter<double>(double.Parse));
-            converters.Add(typeof (string), new StringConverter());
+            converters.Add(typeof (long), new SingleValueConverter<long>(long.Parse));
+            converters.Add(typeof (string), new SingleValueConverter<string>(delegate(string s) { return s; }));
             converters.Add(typeof (Array), new ArrayConverter());
             converters.Add(typeof (IList), new ListConverter());
         }

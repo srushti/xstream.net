@@ -58,8 +58,6 @@
     <Compile Include="Converters\NullConverter.cs" />
     <Compile Include="Converters\ObjectConverterTest.cs" />
     <Compile Include="Converters\SingleValueConverter.cs" />
-    <Compile Include="Converters\StringConverter.cs" />
-    <Compile Include="Converters\StringConverterTest.cs" />
     <Compile Include="DynamicInstanceBuilder.cs" />
     <Compile Include="DynamicInstanceBuilderTest.cs" />
     <Compile Include="GenericsTest.cs" />
