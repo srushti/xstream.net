@@ -31,14 +31,8 @@ namespace XStream {
             writer.EndNode();
         }
 
-//        public void ConvertOriginal(object value, int index) {
-//            StartNode(value, index);
-//            ConvertAnother(value);
-//            writer.EndNode();
-//        }
-
         private void StartNode(object value) {
-            Type type = value.GetType();
+            Type type = value != null ? value.GetType() : typeof (object);
             writer.StartNode(Xmlifier.Xmlify(type));
             if (type.IsGenericType) AddGenericAttributes(type);
             else if (type.IsArray && type.GetElementType().IsGenericType) AddGenericAttributes(type);
@@ -52,9 +46,5 @@ namespace XStream {
                 writer.WriteAttribute(Attributes.GenericArg(i), genericArgument.FullName);
             }
         }
-
-//        private void StartNode(object value, int index) {
-//            writer.StartCollectionNode(value.GetType().FullName.Replace("[]", "-array"), index);
-//        }
     }
 }

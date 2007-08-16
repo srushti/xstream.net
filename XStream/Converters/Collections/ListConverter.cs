@@ -6,7 +6,7 @@ namespace XStream.Converters.Collections {
         private const string LIST_TYPE = "list-type";
 
         public bool CanConvert(Type type) {
-            return typeof (IList).IsAssignableFrom(type);
+            return typeof (ArrayList).Equals(type);
         }
 
         public void ToXml(object value, XStreamWriter writer, MarshallingContext context) {

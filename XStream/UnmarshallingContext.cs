@@ -11,7 +11,7 @@ namespace XStream {
         }
 
         public object ConvertAnother() {
-            string nullAttribute = reader.GetAttribute("null");
+            string nullAttribute = reader.GetAttribute(Attributes.Null);
             if (nullAttribute != null && nullAttribute == "true") return null;
             object result = Find();
             if (result != null) return result;

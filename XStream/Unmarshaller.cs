@@ -49,7 +49,7 @@ namespace XStream {
                 reader.MoveUp();
             }
             else {
-                if (reader.GetAttribute("null") == true.ToString())
+                if (reader.GetAttribute(Attributes.Null) == true.ToString())
                     return null;
             }
             return result;

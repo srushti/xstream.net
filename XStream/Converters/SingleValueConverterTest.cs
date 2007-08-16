@@ -12,5 +12,13 @@ namespace XStream.Converters {
             SerialiseAssertAndDeserialise(100L, "<System.Int64>100</System.Int64>");
             SerialiseAssertAndDeserialise("something ddd7984289*((***('/<>", "<System.String>something ddd7984289*((***('/&lt;&gt;</System.String>");
         }
+
+        [Test]
+        public void HandlesNullablePrimitives() {
+            int? nullableInt = new int?(111);
+            SerialiseAndDeserialise(nullableInt);
+            nullableInt = null;
+            SerialiseAndDeserialise(nullableInt);
+        }
     }
 }

@@ -1,0 +1,16 @@
+using NUnit.Framework;
+
+namespace XStream.Converters {
+    [TestFixture]
+    public class NullConverterTest : ConverterTestCase {
+        [Test]
+        public void InternalNulls() {
+            SerialiseAndDeserialise(new Person("name"));
+        }
+
+        [Test]
+        public void OriginalValueNull() {
+            SerialiseAndDeserialise(null);
+        }
+    }
+}
