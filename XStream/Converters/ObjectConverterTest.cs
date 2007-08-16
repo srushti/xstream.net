@@ -63,6 +63,56 @@ namespace XStream.Converters {
         public void WorksWithArraysHoldingDerivedTypes() {
             SerialiseAndDeserialise(new object[] {1, 2, "222", new AmbiguousReferenceHolder(new string[] {})}, XStreamAssert.AreEqual);
         }
+
+        [Test]
+        public void HandlesPrivateFieldsOfBaseClassWithSameName() {
+            SerialiseAndDeserialise(new DerivedObject());
+        }
+    }
+
+    internal class DerivedObject : BaseObject {
+        public readonly int i = 100;
+
+        public bool Equals(DerivedObject derivedObject) {
+            if (derivedObject == null) return false;
+            if (!base.Equals(derivedObject)) return false;
+            return i == derivedObject.i;
+        }
+
+        public override bool Equals(object obj) {
+            if (ReferenceEquals(this, obj)) return true;
+            return Equals(obj as DerivedObject);
+        }
+
+        public override int GetHashCode() {
+            return base.GetHashCode() + 29*i;
+        }
+
+        public override string ToString() {
+            return "derived i = " + i + " " + base.ToString();
+        }
+    }
+
+    internal class BaseObject : IEquatable<BaseObject> {
+        private readonly int i = 10;
+
+        public bool Equals(BaseObject baseObject) {
+            if (baseObject == null) return false;
+            return i == baseObject.i;
+        }
+
+        public override bool Equals(object obj) {
+            if (ReferenceEquals(this, obj)) return true;
+            return Equals(obj as BaseObject);
+        }
+
+        public override int GetHashCode() {
+            return i;
+        }
+
+        public override string ToString() {
+            return "base i = " + i;
+        }
     }
 
     internal class House {

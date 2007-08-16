@@ -6,28 +6,28 @@ using XStream.Converters.Collections;
 
 namespace XStream {
     internal class ConverterLookup {
-        private static readonly Dictionary<Type, Converter> converters = new Dictionary<Type, Converter>();
+        private static readonly List<Converter> converters = new List<Converter>();
         private static readonly Converter nullConverter = new NullConverter();
 
         static ConverterLookup() {
-            converters.Add(typeof (int), new SingleValueConverter<int>(int.Parse));
-            converters.Add(typeof (DateTime), new SingleValueConverter<DateTime>(DateTime.Parse));
-            converters.Add(typeof (double), new SingleValueConverter<double>(double.Parse));
-            converters.Add(typeof (long), new SingleValueConverter<long>(long.Parse));
-            converters.Add(typeof (string), new SingleValueConverter<string>(delegate(string s) { return s; }));
-            converters.Add(typeof (Array), new ArrayConverter());
-            converters.Add(typeof (IList), new ListConverter());
+            converters.Add(new SingleValueConverter<int>(int.Parse));
+            converters.Add(new SingleValueConverter<DateTime>(DateTime.Parse));
+            converters.Add(new SingleValueConverter<double>(double.Parse));
+            converters.Add(new SingleValueConverter<long>(long.Parse));
+            converters.Add(new SingleValueConverter<string>(delegate(string s) { return s; }));
+            converters.Add(new ArrayConverter());
+            converters.Add(new ListConverter());
         }
 
         internal static Converter GetConverter(Type type) {
-            foreach (KeyValuePair<Type, Converter> pair in converters)
-                if (pair.Value.CanConvert(type)) return pair.Value;
+            foreach (Converter converter in converters)
+                if (converter.CanConvert(type)) return converter;
             return null;
         }
 
         public static Converter GetConverter(string typeName) {
-            if (typeName.EndsWith("-array")) return converters[typeof (Array)];
-            if (typeName.EndsWith("list")) return converters[typeof (IList)];
+            if (typeName.EndsWith("-array")) return GetConverter(typeof (Array));
+            if (typeName.EndsWith("-list")) return GetConverter(typeof (ArrayList));
             return GetConverter(PrimitiveClassNamed(typeName));
         }
 
