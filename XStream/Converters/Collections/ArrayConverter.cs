@@ -8,14 +8,15 @@ namespace XStream.Converters.Collections {
 
         public void ToXml(object value, XStreamWriter writer, MarshallingContext context) {
             Array array = (Array) value;
-            writer.WriteAttribute("array-type", value.GetType().FullName);
+            string typeName = value.GetType().FullName;
+            writer.WriteAttribute("array-type", typeName.Substring(0, typeName.LastIndexOf("[]")));
             foreach (object o in array)
                 context.ConvertOriginal(o);
         }
 
         public object FromXml(XStreamReader reader, UnmarshallingContext context) {
             int count = reader.NoOfChildren();
-            Array result = Array.CreateInstance(Type.GetType(reader.GetAttribute("array-type").Replace("[]", "")), count);
+            Array result = Array.CreateInstance(Type.GetType(reader.GetAttribute("array-type")), count);
             reader.MoveDown();
             for (int i = 0; i < count; i++) {
                 result.SetValue(context.ConvertOriginal(), i);

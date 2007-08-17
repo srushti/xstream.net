@@ -10,7 +10,7 @@ namespace XStream.Converters {
             string serialisedObject =
                 @"<XStream.Converters.ClassForTesting>
     <i>100</i>
-    <array array-type=""System.Int32[]"">
+    <array array-type=""System.Int32"">
         <System.Int32>1</System.Int32>
     </array>
 </XStream.Converters.ClassForTesting>";
