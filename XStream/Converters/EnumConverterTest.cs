@@ -6,8 +6,6 @@ namespace XStream.Converters {
     public class EnumConverterTest : ConverterTestCase {
         [Test]
         public void ConvertsEnums() {
-            System.Console.WriteLine(BindingFlags.Public.GetType());
-            Assert.Fail("throws StackOverflow");
             SerialiseAndDeserialise(BindingFlags.Public);
         }
     }

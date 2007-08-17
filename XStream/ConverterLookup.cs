@@ -15,6 +15,7 @@ namespace XStream {
             converters.Add(new SingleValueConverter<double>(double.Parse));
             converters.Add(new SingleValueConverter<long>(long.Parse));
             converters.Add(new SingleValueConverter<string>(delegate(string s) { return s; }));
+            converters.Add(new EnumConverter());
             converters.Add(new ArrayConverter());
             converters.Add(new ListConverter());
         }

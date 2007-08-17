@@ -53,6 +53,7 @@
     <Compile Include="Converters\Collections\ListConverterTest.cs" />
     <Compile Include="Converters\Converter.cs" />
     <Compile Include="Converters\ConverterTestCase.cs" />
+    <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\EnumConverterTest.cs" />
     <Compile Include="Converters\HashtableConverterTest.cs" />
     <Compile Include="Converters\NullConverterTest.cs" />
