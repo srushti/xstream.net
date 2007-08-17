@@ -14,13 +14,17 @@ namespace XStream {
             converters.Add(new SingleValueConverter<DateTime>(DateTime.Parse));
             converters.Add(new SingleValueConverter<double>(double.Parse));
             converters.Add(new SingleValueConverter<long>(long.Parse));
+            converters.Add(new SingleValueConverter<decimal>(decimal.Parse));
+            converters.Add(new TypeConverter());
             converters.Add(new SingleValueConverter<string>(delegate(string s) { return s; }));
             converters.Add(new EnumConverter());
+            converters.Add(new HashtableConverter());
             converters.Add(new ArrayConverter());
             converters.Add(new ListConverter());
         }
 
         internal static Converter GetConverter(Type type) {
+            if (type == null) return null;
             foreach (Converter converter in converters)
                 if (converter.CanConvert(type)) return converter;
             return null;

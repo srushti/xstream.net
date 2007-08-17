@@ -11,6 +11,8 @@ namespace XStream.Converters {
             SerialiseAssertAndDeserialise(10.11, "<System.Double>10.11</System.Double>");
             SerialiseAssertAndDeserialise(100L, "<System.Int64>100</System.Int64>");
             SerialiseAssertAndDeserialise("something ddd7984289*((***('/<>", "<System.String>something ddd7984289*((***('/&lt;&gt;</System.String>");
+            SerialiseAssertAndDeserialise(new decimal(111), "<System.Decimal>111</System.Decimal>");
+            SerialiseAssertAndDeserialise(typeof (int), "<System.RuntimeType>System.Int32</System.RuntimeType>");
         }
 
         [Test]

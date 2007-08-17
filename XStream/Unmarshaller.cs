@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using XStream.Converters;
+using XStream.Utilities;
 
 namespace XStream {
     internal class Unmarshaller {
@@ -56,7 +57,7 @@ namespace XStream {
         }
 
         private object ConvertField(Type fieldType) {
-            string classAttribute = reader.GetAttribute("class");
+            string classAttribute = reader.GetAttribute(Attributes.classType);
             if (!string.IsNullOrEmpty(classAttribute)) fieldType = Type.GetType(Xmlifier.UnXmlify(classAttribute));
             Converter converter = ConverterLookup.GetConverter(fieldType);
             if (converter != null)

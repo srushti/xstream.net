@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace XStream {
+namespace XStream.Utilities {
     [TestFixture]
     public class XmlStackTest {
         private XmlStack stack;

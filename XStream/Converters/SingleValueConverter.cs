@@ -8,12 +8,8 @@ namespace XStream.Converters {
             this.parse = parse;
         }
 
-        protected static Type ConvertingType() {
-            return typeof (T);
-        }
-
-        public bool CanConvert(Type type) {
-            return type.Equals(ConvertingType());
+        public virtual bool CanConvert(Type type) {
+            return type.Equals(typeof (T));
         }
 
         public void ToXml(object value, XStreamWriter writer, MarshallingContext context) {

@@ -1,5 +1,6 @@
 using System;
 using XStream.Converters;
+using XStream.Utilities;
 
 namespace XStream {
     public class MarshallingContext {

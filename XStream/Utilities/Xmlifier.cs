@@ -1,6 +1,6 @@
 using System;
 
-namespace XStream {
+namespace XStream.Utilities {
     internal class Xmlifier {
         internal static string UnXmlify(string typeName) {
             return typeName.Replace("-array", "[]").Replace("-plus", "+");

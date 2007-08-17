@@ -1,5 +1,6 @@
 using System.IO;
 using System.Xml.XPath;
+using XStream.Utilities;
 
 namespace XStream {
     public interface XStreamReader {
@@ -14,7 +15,7 @@ namespace XStream {
 
     internal class Reader : XStreamReader {
         private readonly XPathNavigator navigator;
-        private XmlStack stack = new XmlStack();
+        private readonly XmlStack stack = new XmlStack();
 
         public Reader(string s) {
             navigator = new XPathDocument(new StringReader(s)).CreateNavigator();

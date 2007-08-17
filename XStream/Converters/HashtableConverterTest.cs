@@ -6,13 +6,16 @@ namespace XStream.Converters {
     public class HashtableConverterTest : ConverterTestCase {
         [Test]
         public void ConvertsHashtables() {
-            Assert.Fail("currently throws StackOverflow");
+            Person clark = new Person("clark");
+            Person lois = new Person("lois");
+            clark.likes = lois;
+            lois.likes = clark;
             Hashtable hashtable = new Hashtable();
             hashtable.Add(1, 1);
-            hashtable.Add(2, null);
-            hashtable.Add(new object(), GetType());
-            hashtable.Add("some key", new Person("person"));
-            hashtable.Add(new Hashtable(), 333);
+            hashtable.Add(2, "some value");
+            hashtable.Add(2222L, clark);
+            hashtable.Add("some key", null);
+            hashtable.Add(clark, lois);
             SerialiseAndDeserialise(hashtable);
         }
     }

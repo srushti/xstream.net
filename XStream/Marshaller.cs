@@ -16,6 +16,7 @@ namespace XStream {
         }
 
         private void MarshalAs(object value, Type type) {
+            if (type.Equals(typeof (object))) return;
             FieldInfo[] fields = type.GetFields(Constants.BINDINGFlags);
             foreach (FieldInfo field in fields) {
                 writer.StartNode(field.Name);
@@ -23,7 +24,7 @@ namespace XStream {
                 context.ConvertAnother(field.GetValue(value));
                 writer.EndNode();
             }
-            if (!typeof (object).Equals(type.BaseType)) MarshalAs(value, type.BaseType);
+            MarshalAs(value, type.BaseType);
         }
 
         private void WriteClassNameIfNeedBe(object value, FieldInfo field) {
@@ -31,7 +32,7 @@ namespace XStream {
             if (fieldValue == null) return;
             Type actualType = fieldValue.GetType();
             if (!field.FieldType.Equals(actualType))
-                writer.WriteAttribute("class", actualType.FullName);
+                writer.WriteAttribute(Attributes.classType, actualType.FullName);
         }
     }
 }
