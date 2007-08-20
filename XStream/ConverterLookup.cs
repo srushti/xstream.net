@@ -11,14 +11,21 @@ namespace XStream {
 
         static ConverterLookup() {
             converters.Add(new SingleValueConverter<int>(int.Parse));
-            converters.Add(new SingleValueConverter<DateTime>(DateTime.Parse));
-            converters.Add(new SingleValueConverter<double>(double.Parse));
-            converters.Add(new SingleValueConverter<Single>(Single.Parse));
+            converters.Add(new SingleValueConverter<short>(short.Parse));
             converters.Add(new SingleValueConverter<long>(long.Parse));
+            converters.Add(new SingleValueConverter<double>(double.Parse));
+            converters.Add(new SingleValueConverter<UInt16>(UInt16.Parse));
+            converters.Add(new SingleValueConverter<UInt32>(UInt32.Parse));
+            converters.Add(new SingleValueConverter<UInt64>(UInt64.Parse));
+            converters.Add(new SingleValueConverter<DateTime>(DateTime.Parse));
+            converters.Add(new SingleValueConverter<Single>(Single.Parse));
             converters.Add(new SingleValueConverter<decimal>(decimal.Parse));
             converters.Add(new SingleValueConverter<bool>(bool.Parse));
+            converters.Add(new SingleValueConverter<byte>(byte.Parse));
+            converters.Add(new SingleValueConverter<Guid>(delegate(string s) { return new Guid(s); }));
             converters.Add(new TypeConverter());
             converters.Add(new SingleValueConverter<string>(delegate(string s) { return s; }));
+            converters.Add(new SingleValueConverter<char>(char.Parse));
             converters.Add(new EnumConverter());
             converters.Add(new HashtableConverter());
             converters.Add(new ArrayConverter());

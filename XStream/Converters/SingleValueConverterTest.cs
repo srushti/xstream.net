@@ -14,6 +14,13 @@ namespace XStream.Converters {
             SerialiseAssertAndDeserialise(new decimal(111), "<Decimal class=\"System.Decimal\">111</Decimal>");
             SerialiseAssertAndDeserialise(typeof (int), "<RuntimeType class=\"System.RuntimeType\">System.Int32</RuntimeType>");
             SerialiseAssertAndDeserialise(true, "<Boolean class=\"System.Boolean\">True</Boolean>");
+            SerialiseAssertAndDeserialise(byte.MaxValue, "<Byte class=\"System.Byte\">255</Byte>");
+            Guid guid = Guid.NewGuid();
+            SerialiseAssertAndDeserialise(guid, "<Guid class=\"System.Guid\">" + guid + "</Guid>");
+            SerialiseAssertAndDeserialise(new UInt16(), "<UInt16 class=\"System.UInt16\">0</UInt16>");
+            SerialiseAssertAndDeserialise(new UInt32(), "<UInt32 class=\"System.UInt32\">0</UInt32>");
+            SerialiseAssertAndDeserialise(new UInt64(), "<UInt64 class=\"System.UInt64\">0</UInt64>");
+            SerialiseAssertAndDeserialise('s', "<Char class=\"System.Char\">s</Char>");
         }
 
         [Test]
