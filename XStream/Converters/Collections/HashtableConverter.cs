@@ -22,7 +22,9 @@ namespace XStream.Converters.Collections {
 
         private static void WriteNode(XStreamWriter writer, MarshallingContext context, string node, object value) {
             writer.StartNode(node);
-            context.ConvertOriginal(value);
+            Type type = value != null ? value.GetType() : typeof (object);
+            writer.WriteAttribute(Attributes.classType, type.FullName);
+            context.ConvertAnother(value);
             writer.EndNode();
         }
 
@@ -45,11 +47,9 @@ namespace XStream.Converters.Collections {
 
         private static void GetObject(UnmarshallingContext context, ref object key, ref object value, XStreamReader reader) {
             string nodeName = reader.GetNodeName();
-            reader.MoveDown();
             object o = context.ConvertOriginal();
             if (KEY.Equals(nodeName)) key = o;
             else value = o;
-            reader.MoveUp();
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 namespace XStream.Utilities {
     internal class Xmlifier {
@@ -11,6 +12,16 @@ namespace XStream.Utilities {
             intermediate = S.RemoveFrom(intermediate, "`");
             if (type.IsArray) intermediate += "-array";
             return intermediate;
+        }
+
+        public static string XmlifyNode(Type type) {
+            StringBuilder typeName = new StringBuilder(S.RemoveFrom(type.Name.Replace("[]", "-array"), "`"));
+            Type[] genericArguments = type.GetGenericArguments();
+            for (int i = 0; i < genericArguments.Length; i++) {
+                Type genericArgument = genericArguments[i];
+                typeName.Append((i == 0 ? "Of" : "And") + XmlifyNode(genericArgument));
+            }
+            return typeName.ToString();
         }
     }
 }

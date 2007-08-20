@@ -6,11 +6,11 @@ namespace XStream.Converters.Collections {
         [Test]
         public void ConvertsArray() {
             string serialisedArray =
-                @"<System.Int32-array array-type=""System.Int32"">
-    <System.Int32>10</System.Int32>
-    <System.Int32>20</System.Int32>
-    <System.Int32>30</System.Int32>
-</System.Int32-array>";
+                @"<Int32-array class=""System.Int32[]"" array-type=""System.Int32"">
+    <Int32 class=""System.Int32"">10</Int32>
+    <Int32 class=""System.Int32"">20</Int32>
+    <Int32 class=""System.Int32"">30</Int32>
+</Int32-array>";
             SerialiseAssertAndDeserialise(new int[] {10, 20, 30,}, serialisedArray);
         }
 

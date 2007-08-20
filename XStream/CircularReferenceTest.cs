@@ -12,13 +12,13 @@ namespace XStream {
             clark.likes = lois;
             lois.likes = clark;
             string serialisedPeople =
-                @"<XStream.Person>
+                @"<Person class=""XStream.Person"">
     <likes>
-        <likes references=""/XStream.Person"" />
+        <likes references=""/Person"" />
         <name>lois</name>
     </likes>
     <name>clark</name>
-</XStream.Person>";
+</Person>";
             SerialiseAssertAndDeserialise(clark, serialisedPeople, Person.AssertPersons);
         }
     }

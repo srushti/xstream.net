@@ -34,9 +34,10 @@ namespace XStream {
 
         private void StartNode(object value) {
             Type type = value != null ? value.GetType() : typeof (object);
-            writer.StartNode(Xmlifier.Xmlify(type));
-            if (type.IsGenericType) AddGenericAttributes(type);
-            else if (type.IsArray && type.GetElementType().IsGenericType) AddGenericAttributes(type);
+            writer.StartNode(Xmlifier.XmlifyNode(type));
+            writer.WriteAttribute(Attributes.classType, type);
+//            if (type.IsGenericType) AddGenericAttributes(type);
+//            else if (type.IsArray && type.GetElementType().IsGenericType) AddGenericAttributes(type);
         }
 
         private void AddGenericAttributes(Type type) {

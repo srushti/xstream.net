@@ -8,22 +8,22 @@ namespace XStream.Converters {
         [Test]
         public void ConvertsObject() {
             string serialisedObject =
-                @"<XStream.Converters.ClassForTesting>
+                @"<ClassForTesting class=""XStream.Converters.ClassForTesting"">
     <i>100</i>
     <array array-type=""System.Int32"">
-        <System.Int32>1</System.Int32>
+        <Int32 class=""System.Int32"">1</Int32>
     </array>
-</XStream.Converters.ClassForTesting>";
+</ClassForTesting>";
             ClassForTesting original = new ClassForTesting(100, new int[] {1,});
             SerialiseAssertAndDeserialise(original, serialisedObject);
         }
 
         [Test]
         public void ConvertsPerson() {
-            string serialisedPerson = @"<XStream.Person>
+            string serialisedPerson = @"<Person class=""XStream.Person"">
     <likes null=""True""/>
     <name>john</name>
-</XStream.Person>";
+</Person>";
             Person person = new Person("john");
             SerialiseAssertAndDeserialise(person, serialisedPerson);
         }
@@ -31,20 +31,20 @@ namespace XStream.Converters {
         [Test]
         public void ConvertsHouse() {
             string serialisedHouse =
-                @"<XStream.Converters.House>
+                @"<House class=""XStream.Converters.House"">
     <father>
         <likes>
-            <likes references=""/XStream.Converters.House/father""/>
+            <likes references=""/House/father""/>
             <name>mom</name>
         </likes>
         <name>dad</name>
     </father>
-    <mother references=""/XStream.Converters.House/father/likes""/>
+    <mother references=""/House/father/likes""/>
     <child>
         <likes null=""True""/>
         <name>kid</name>
     </child>
-</XStream.Converters.House>";
+</House>";
             House house = new House(new Person("dad"), new Person("mom"), new Person("kid"));
             SerialiseAssertAndDeserialise(house, serialisedHouse, House.AssertHouse);
         }
@@ -52,9 +52,9 @@ namespace XStream.Converters {
         [Test]
         public void HandlesAmbiguousReferences() {
             string serialisedHolder =
-                @"<XStream.Converters.AmbiguousReferenceHolder>
+                @"<AmbiguousReferenceHolder class=""XStream.Converters.AmbiguousReferenceHolder"">
     <o class=""System.String"">x</o>
-</XStream.Converters.AmbiguousReferenceHolder>";
+</AmbiguousReferenceHolder>";
             SerialiseAssertAndDeserialise(new AmbiguousReferenceHolder("x"), serialisedHolder, AmbiguousReferenceHolder.AssertHolder);
             SerialiseAndDeserialise(new AmbiguousReferenceHolder(new string[] {"1", "2"}), AmbiguousReferenceHolder.AssertHolder);
         }

@@ -13,47 +13,27 @@ namespace XStream {
             this.context = context;
         }
 
-        public object Unmarshal() {
-            string typeName = Xmlifier.UnXmlify(reader.GetNodeName());
-            string genericArgsAttribute = reader.GetAttribute(Attributes.numberOfGenericArgs);
-            Type type;
-            if (string.IsNullOrEmpty(genericArgsAttribute))
-                type = Type.GetType(typeName);
-            else
-                type = GetGenericType(typeName, int.Parse(genericArgsAttribute));
-            if (type == null) throw new ConversionException("Couldn't deserialise from " + typeName);
-            Converter converter = ConverterLookup.GetConverter(type);
-            if (converter != null) return converter.FromXml(reader, context);
-            return Unmarshal(type);
-        }
-
-        private Type GetGenericType(string typeName, int noOfGenericArgs) {
-            Type genericType = Type.GetType(S.RemoveFrom(typeName, "[]") + "`" + noOfGenericArgs);
-            Type[] genericArgs = new Type[noOfGenericArgs];
-            for (int i = 0; i < noOfGenericArgs; i++) genericArgs[i] = Type.GetType(Xmlifier.UnXmlify(reader.GetAttribute(Attributes.GenericArg(i))));
-            if (typeName.Contains("[]")) return genericType.MakeArrayType();
-            return genericType.MakeGenericType(genericArgs);
-        }
-
-        private object Unmarshal(Type type) {
+        internal object Unmarshal(Type type) {
             object result = context.Find();
             if (result != null) return result;
             result = DynamicInstanceBuilder.CreateInstance(type);
             context.StackObject(result);
             int count = reader.NoOfChildren();
-            if (reader.MoveDown()) {
-                for (int i = 0; i < count; i++) {
-                    FieldInfo field = type.GetField(reader.GetNodeName(), BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                    field.SetValue(result, ConvertField(field.FieldType));
-                    reader.MoveNext();
-                }
+            if (reader.GetAttribute(Attributes.Null) == true.ToString())
+                return null;
+            UnmarshalAs(result, type);
+            return result;
+        }
+
+        private void UnmarshalAs(object result, Type type) {
+            if (type.Equals(typeof(object))) return;
+            FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
+            foreach (FieldInfo field in fields) {
+                reader.MoveDown(field.Name);
+                field.SetValue(result, ConvertField(field.FieldType));
                 reader.MoveUp();
             }
-            else {
-                if (reader.GetAttribute(Attributes.Null) == true.ToString())
-                    return null;
-            }
-            return result;
+            UnmarshalAs(result, type.BaseType);
         }
 
         private object ConvertField(Type fieldType) {

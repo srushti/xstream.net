@@ -11,6 +11,7 @@ namespace XStream {
         void MoveUp();
         int NoOfChildren();
         string GetAttribute(string attributeName);
+        bool MoveDown(string name);
     }
 
     internal class Reader : XStreamReader {
@@ -67,6 +68,12 @@ namespace XStream {
 
         public string GetAttribute(string attributeName) {
             return navigator.GetAttribute(attributeName, "");
+        }
+
+        public bool MoveDown(string name) {
+            bool succeeded = navigator.MoveToChild(name, "");
+            if (succeeded) stack.Push(GetNodeName());
+            return succeeded;
         }
     }
 }
