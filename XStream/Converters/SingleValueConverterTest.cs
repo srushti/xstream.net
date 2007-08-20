@@ -13,6 +13,7 @@ namespace XStream.Converters {
             SerialiseAssertAndDeserialise("something ddd7984289*((***('/<>", "<String class=\"System.String\">something ddd7984289*((***('/&lt;&gt;</String>");
             SerialiseAssertAndDeserialise(new decimal(111), "<Decimal class=\"System.Decimal\">111</Decimal>");
             SerialiseAssertAndDeserialise(typeof (int), "<RuntimeType class=\"System.RuntimeType\">System.Int32</RuntimeType>");
+            SerialiseAssertAndDeserialise(true, "<Boolean class=\"System.Boolean\">True</Boolean>");
         }
 
         [Test]

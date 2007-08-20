@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using NUnit.Framework;
+using XStream.Converters;
 using XStream.Converters.Collections;
 
 namespace XStream {
@@ -14,9 +15,18 @@ namespace XStream {
             }
             else if (expected is Person && actual is Person) Person.AssertPersons(expected, actual);
             else if (expected is DateTime && actual is DateTime) AssertDateTime(expected, actual);
+            else if (expected is HashtableConverterTest.DerivedHashtable && actual is HashtableConverterTest.DerivedHashtable)
+                AssertDerivedHashtable(expected, actual);
             else if (expected is Hashtable && actual is Hashtable) AssertHashtable(expected, actual);
             else if (expected is ListConverterTest.DerivedList && actual is ListConverterTest.DerivedList) AssertDerivedList(expected, actual);
             else Assert.AreEqual(expected, actual);
+        }
+
+        private static void AssertDerivedHashtable(object expected, object actual) {
+            HashtableConverterTest.DerivedHashtable expectedHashtable = (HashtableConverterTest.DerivedHashtable) expected,
+                                                    actualHashtable = (HashtableConverterTest.DerivedHashtable) actual;
+            Assert.AreEqual(expectedHashtable.x, actualHashtable.x);
+            AssertHashtable(expectedHashtable, actualHashtable);
         }
 
         private static void AssertDerivedList(object expected, object actual) {

@@ -16,11 +16,10 @@ namespace XStream {
         internal object Unmarshal(Type type) {
             object result = context.Find();
             if (result != null) return result;
-            result = DynamicInstanceBuilder.CreateInstance(type);
-            context.StackObject(result);
-            int count = reader.NoOfChildren();
             if (reader.GetAttribute(Attributes.Null) == true.ToString())
                 return null;
+            result = DynamicInstanceBuilder.CreateInstance(type);
+            context.StackObject(result);
             UnmarshalAs(result, type);
             return result;
         }
