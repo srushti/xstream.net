@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 
 namespace XStream {
@@ -7,13 +6,8 @@ namespace XStream {
             StringBuilder stringBuilder = new StringBuilder();
             XWriter writer = new XWriter(stringBuilder);
             MarshallingContext context = new MarshallingContext(writer);
-            try {
-                context.ConvertOriginal(value);
-                return stringBuilder.ToString();
-            }
-            finally {
-                Console.WriteLine(stringBuilder.ToString());
-            }
+            context.ConvertOriginal(value);
+            return stringBuilder.ToString();
         }
 
         public object FromXml(string s) {

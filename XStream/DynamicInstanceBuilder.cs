@@ -11,12 +11,14 @@ namespace XStream {
 
         private static ModuleBuilder ModuleBuilder {
             get {
-                if (moduleBuilder == null) {
-                    AssemblyName assemblyName = new AssemblyName();
-                    assemblyName.Name = ".xsnet";
-                    AppDomain domain = AppDomain.CurrentDomain;
-                    AssemblyBuilder ab = domain.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
-                    moduleBuilder = ab.DefineDynamicModule(".xstreamnet.dll");
+                lock (typeof (DynamicInstanceBuilder)) {
+                    if (moduleBuilder == null) {
+                        AssemblyName assemblyName = new AssemblyName();
+                        assemblyName.Name = ".xsnet";
+                        AppDomain domain = AppDomain.CurrentDomain;
+                        AssemblyBuilder ab = domain.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
+                        moduleBuilder = ab.DefineDynamicModule(".xstreamnet.dll");
+                    }
                 }
                 return moduleBuilder;
             }
@@ -33,9 +35,7 @@ namespace XStream {
                 throw new ConversionException("Impossible to construct type: " + type);
 
             // Check if we already have the type defined
-//            string typeName = prefix + type.ToString().Replace("+", "\\+");
             string typeName = prefix + type;
-
             lock (typeMap) {
                 Type dynamicType = typeMap[typeName] as Type;
 
