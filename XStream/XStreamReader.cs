@@ -12,13 +12,14 @@ namespace XStream {
         int NoOfChildren();
         string GetAttribute(string attributeName);
         bool MoveDown(string name);
+        string CurrentPath { get; }
     }
 
-    internal class Reader : XStreamReader {
+    internal class XReader : XStreamReader {
         private readonly XPathNavigator navigator;
         private readonly XmlStack stack = new XmlStack();
 
-        public Reader(string s) {
+        public XReader(string s) {
             navigator = new XPathDocument(new StringReader(s)).CreateNavigator();
             navigator.MoveToChild(XPathNodeType.Element);
             stack.Push(GetNodeName());

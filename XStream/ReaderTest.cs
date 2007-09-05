@@ -3,12 +3,12 @@ using NUnit.Framework;
 namespace XStream {
     [TestFixture]
     public class ReaderTest {
-        private Reader reader;
+        private XReader reader;
         private const string xml = @"<Outer><inner1>111</inner1><inner2>222</inner2></Outer>";
 
         [SetUp]
         public void SetUp() {
-            reader = new Reader(xml);
+            reader = new XReader(xml);
         }
 
         [Test]

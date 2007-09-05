@@ -5,9 +5,9 @@ using XStream.Utilities;
 namespace XStream {
     public class MarshallingContext {
         private readonly AlreadySerialisedDictionary alreadySerialised = new AlreadySerialisedDictionary();
-        private readonly Writer writer;
+        private readonly XStreamWriter writer;
 
-        internal MarshallingContext(Writer writer) {
+        internal MarshallingContext(XStreamWriter writer) {
             this.writer = writer;
         }
 
@@ -36,17 +36,6 @@ namespace XStream {
             Type type = value != null ? value.GetType() : typeof (object);
             writer.StartNode(Xmlifier.XmlifyNode(type));
             writer.WriteAttribute(Attributes.classType, type);
-//            if (type.IsGenericType) AddGenericAttributes(type);
-//            else if (type.IsArray && type.GetElementType().IsGenericType) AddGenericAttributes(type);
-        }
-
-        private void AddGenericAttributes(Type type) {
-            Type[] genericArguments = type.GetGenericArguments();
-            writer.WriteAttribute(Attributes.numberOfGenericArgs, genericArguments.Length);
-            for (int i = 0; i < genericArguments.Length; i++) {
-                Type genericArgument = genericArguments[i];
-                writer.WriteAttribute(Attributes.GenericArg(i), genericArgument.FullName);
-            }
         }
     }
 }

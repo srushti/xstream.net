@@ -25,7 +25,7 @@ namespace XStream {
         }
 
         private void UnmarshalAs(object result, Type type) {
-            if (type.Equals(typeof(object))) return;
+            if (type.Equals(typeof (object))) return;
             FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
             foreach (FieldInfo field in fields) {
                 reader.MoveDown(field.Name);

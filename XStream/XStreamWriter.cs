@@ -9,14 +9,14 @@ namespace XStream {
         void SetValue(string value);
         void EndNode();
         void WriteAttribute(string name, object value);
-        void StartCollectionNode(string name, int index);
+        string CurrentPath { get; }
     }
 
-    internal class Writer : XStreamWriter {
+    internal class XWriter : XStreamWriter {
         private readonly XmlWriter textWriter;
         private readonly XmlStack stack = new XmlStack();
 
-        public Writer(StringBuilder stringBuilder) {
+        public XWriter(StringBuilder stringBuilder) {
             textWriter = new XmlTextWriter(new StringWriter(stringBuilder));
         }
 
@@ -27,11 +27,6 @@ namespace XStream {
         public void StartNode(string name) {
             textWriter.WriteStartElement(name);
             stack.Push(name);
-        }
-
-        public void StartCollectionNode(string name, int index) {
-            textWriter.WriteStartElement(name);
-            stack.Push(name + "[" + index + "]");
         }
 
         public void SetValue(string value) {

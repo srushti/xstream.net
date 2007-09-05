@@ -18,7 +18,6 @@ namespace XStream.Converters {
             SerialiseAndDeserialise(hashtable);
         }
 
-
         private static void SetupRandomData(IDictionary hashtable) {
             Person clark = new Person("clark");
             Person lois = new Person("lois");
