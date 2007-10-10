@@ -12,7 +12,7 @@ namespace XStream {
             clark.likes = lois;
             lois.likes = clark;
             string serialisedPeople =
-                @"<Person class=""XStream.Person"">
+                @"<Person class=""" + typeof(Person).AssemblyQualifiedName + @""">
     <likes>
         <likes references=""/Person"" />
         <name>lois</name>

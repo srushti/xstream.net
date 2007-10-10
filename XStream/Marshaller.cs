@@ -32,7 +32,7 @@ namespace XStream {
             if (fieldValue == null) return;
             Type actualType = fieldValue.GetType();
             if (!field.FieldType.Equals(actualType))
-                writer.WriteAttribute(Attributes.classType, actualType.FullName);
+                writer.WriteAttribute(Attributes.classType, actualType.AssemblyQualifiedName);
         }
     }
 }

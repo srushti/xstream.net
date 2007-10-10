@@ -23,7 +23,7 @@ namespace XStream.Converters.Collections {
         private static void WriteNode(XStreamWriter writer, MarshallingContext context, string node, object value) {
             writer.StartNode(node);
             Type type = value != null ? value.GetType() : typeof (object);
-            writer.WriteAttribute(Attributes.classType, type.FullName);
+            writer.WriteAttribute(Attributes.classType, type.AssemblyQualifiedName);
             context.ConvertAnother(value);
             writer.EndNode();
         }

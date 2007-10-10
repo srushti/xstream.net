@@ -7,55 +7,23 @@ namespace XStream.Converters {
     public class ObjectConverterTest : ConverterTestCase {
         [Test]
         public void ConvertsObject() {
-            string serialisedObject =
-                @"<ClassForTesting class=""XStream.Converters.ClassForTesting"">
-    <i>100</i>
-    <array array-type=""System.Int32"">
-        <Int32 class=""System.Int32"">1</Int32>
-    </array>
-</ClassForTesting>";
-            ClassForTesting original = new ClassForTesting(100, new int[] {1,});
-            SerialiseAssertAndDeserialise(original, serialisedObject);
+            SerialiseAndDeserialise(new ClassForTesting(100, new int[] {1,}));
         }
 
         [Test]
         public void ConvertsPerson() {
-            string serialisedPerson = @"<Person class=""XStream.Person"">
-    <likes null=""True""/>
-    <name>john</name>
-</Person>";
-            Person person = new Person("john");
-            SerialiseAssertAndDeserialise(person, serialisedPerson);
+            SerialiseAndDeserialise(new Person("john"));
         }
 
         [Test]
         public void ConvertsHouse() {
-            string serialisedHouse =
-                @"<House class=""XStream.Converters.House"">
-    <father>
-        <likes>
-            <likes references=""/House/father""/>
-            <name>mom</name>
-        </likes>
-        <name>dad</name>
-    </father>
-    <mother references=""/House/father/likes""/>
-    <child>
-        <likes null=""True""/>
-        <name>kid</name>
-    </child>
-</House>";
             House house = new House(new Person("dad"), new Person("mom"), new Person("kid"));
-            SerialiseAssertAndDeserialise(house, serialisedHouse, House.AssertHouse);
+            SerialiseAndDeserialise(house, House.AssertHouse);
         }
 
         [Test]
         public void HandlesAmbiguousReferences() {
-            string serialisedHolder =
-                @"<AmbiguousReferenceHolder class=""XStream.Converters.AmbiguousReferenceHolder"">
-    <o class=""System.String"">x</o>
-</AmbiguousReferenceHolder>";
-            SerialiseAssertAndDeserialise(new AmbiguousReferenceHolder("x"), serialisedHolder, AmbiguousReferenceHolder.AssertHolder);
+            SerialiseAndDeserialise(new AmbiguousReferenceHolder("x"), AmbiguousReferenceHolder.AssertHolder);
             SerialiseAndDeserialise(new AmbiguousReferenceHolder(new string[] {"1", "2"}), AmbiguousReferenceHolder.AssertHolder);
         }
 

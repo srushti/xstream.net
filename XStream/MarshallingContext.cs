@@ -35,7 +35,7 @@ namespace XStream {
         private void StartNode(object value) {
             Type type = value != null ? value.GetType() : typeof (object);
             writer.StartNode(Xmlifier.XmlifyNode(type));
-            writer.WriteAttribute(Attributes.classType, type);
+            writer.WriteAttribute(Attributes.classType, type.AssemblyQualifiedName);
         }
     }
 }

@@ -37,6 +37,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MiscellaneousTest.cs" />
     <Compile Include="Utilities\AlreadySerialisedDictionary.cs" />
     <Compile Include="Attributes.cs" />
     <Compile Include="CircularReferenceTest.cs" />

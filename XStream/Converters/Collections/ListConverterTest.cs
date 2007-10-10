@@ -7,13 +7,7 @@ namespace XStream.Converters.Collections {
     public class ListConverterTest : CollectionConverterTestCase {
         [Test]
         public void ConvertsList() {
-            string serialisedList =
-                @"<ArrayList class=""System.Collections.ArrayList"" list-type=""System.Collections.ArrayList"">
-    <Int32 class=""System.Int32"">1</Int32>
-    <Int32 class=""System.Int32"">20</Int32>
-    <Int32 class=""System.Int32"">300</Int32>
-</ArrayList>";
-            SerialiseAssertAndDeserialise(new ArrayList(new int[] {1, 20, 300,}), serialisedList, ListAsserter);
+            SerialiseAndDeserialise(new ArrayList(new int[] {1, 20, 300,}), ListAsserter);
         }
 
         [Test]

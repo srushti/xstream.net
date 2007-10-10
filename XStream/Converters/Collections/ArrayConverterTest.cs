@@ -5,13 +5,7 @@ namespace XStream.Converters.Collections {
     public class ArrayConverterTest : CollectionConverterTestCase {
         [Test]
         public void ConvertsArray() {
-            string serialisedArray =
-                @"<Int32-array class=""System.Int32[]"" array-type=""System.Int32"">
-    <Int32 class=""System.Int32"">10</Int32>
-    <Int32 class=""System.Int32"">20</Int32>
-    <Int32 class=""System.Int32"">30</Int32>
-</Int32-array>";
-            SerialiseAssertAndDeserialise(new int[] {10, 20, 30,}, serialisedArray);
+            SerialiseAndDeserialise(new int[] {10, 20, 30,});
         }
 
         [Test]
