@@ -13,7 +13,8 @@ namespace XStream {
             clark.likes = lois;
             lois.likes = clark;
             string serialisedPeople =
-                @"<Person class=""" + typeof(Person).AssemblyQualifiedName + @""">
+                @"<Person class=""" + typeof (Person).AssemblyQualifiedName +
+                @""">
     <likes>
         <likes references=""/Person"" />
         <name>lois</name>
@@ -22,10 +23,9 @@ namespace XStream {
 </Person>";
             SerialiseAssertAndDeserialise(clark, serialisedPeople, Person.AssertPersons);
         }
-        
+
         [Test]
-        public void s()
-        {
+        public void s() {
             Person clark = new Person("clark");
             Person lois = new Person("lois");
             clark.likes = lois;

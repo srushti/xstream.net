@@ -8,8 +8,7 @@ namespace XStream {
         private readonly XStreamWriter writer;
         private readonly ConverterLookup converterLookup;
 
-        internal MarshallingContext(XStreamWriter writer, ConverterLookup converterLookup)
-        {
+        internal MarshallingContext(XStreamWriter writer, ConverterLookup converterLookup) {
             this.writer = writer;
             this.converterLookup = converterLookup;
         }

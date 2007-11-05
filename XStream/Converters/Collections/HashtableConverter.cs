@@ -45,7 +45,8 @@ namespace XStream.Converters.Collections {
             return result;
         }
 
-        private static void GetObject(UnmarshallingContext context, ref object key, ref object value, XStreamReader reader) {
+        private static void GetObject(UnmarshallingContext context, ref object key, ref object value,
+                                      XStreamReader reader) {
             string nodeName = reader.GetNodeName();
             object o = context.ConvertOriginal();
             if (KEY.Equals(nodeName)) key = o;

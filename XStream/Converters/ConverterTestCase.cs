@@ -5,7 +5,8 @@ namespace XStream.Converters {
     public abstract class ConverterTestCase {
         protected XStream xstream = new XStream();
 
-        internal void SerialiseAssertAndDeserialise(object value, string expectedSerialisedObject, AssertEqualsDelegate equalsDelegate) {
+        internal void SerialiseAssertAndDeserialise(object value, string expectedSerialisedObject,
+                                                    AssertEqualsDelegate equalsDelegate) {
             EqualsIgnoreWhitespace(expectedSerialisedObject, SerialiseAndDeserialise(value, equalsDelegate));
         }
 

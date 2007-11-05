@@ -1,14 +1,11 @@
 using System.Text;
 using XStream.Converters;
 
-namespace XStream
-{
-    public class XStream
-    {
+namespace XStream {
+    public class XStream {
         private readonly ConverterLookup converterLookup = new ConverterLookup();
 
-        public string ToXml(object value)
-        {
+        public string ToXml(object value) {
             StringBuilder stringBuilder = new StringBuilder();
             XWriter writer = new XWriter(stringBuilder);
             MarshallingContext context = new MarshallingContext(writer, converterLookup);
@@ -16,13 +13,11 @@ namespace XStream
             return stringBuilder.ToString();
         }
 
-        public void AddConverter(Converter converter)
-        {
+        public void AddConverter(Converter converter) {
             converterLookup.AddConverter(converter);
         }
 
-        public object FromXml(string s)
-        {
+        public object FromXml(string s) {
             XReader reader = new XReader(s);
             UnmarshallingContext context = new UnmarshallingContext(reader, converterLookup);
             return context.ConvertOriginal();

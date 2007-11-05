@@ -77,7 +77,8 @@ namespace XStream {
         }
 
         public override string ToString() {
-            return "value t = " + t + ", u = " + u + "\tgeneric class: " + typeof (T).FullName + ", " + typeof (U).FullName;
+            return
+                "value t = " + t + ", u = " + u + "\tgeneric class: " + typeof (T).FullName + ", " + typeof (U).FullName;
         }
 
         public override int GetHashCode() {

@@ -24,12 +24,14 @@ namespace XStream.Converters {
         [Test]
         public void HandlesAmbiguousReferences() {
             SerialiseAndDeserialise(new AmbiguousReferenceHolder("x"), AmbiguousReferenceHolder.AssertHolder);
-            SerialiseAndDeserialise(new AmbiguousReferenceHolder(new string[] {"1", "2"}), AmbiguousReferenceHolder.AssertHolder);
+            SerialiseAndDeserialise(new AmbiguousReferenceHolder(new string[] {"1", "2"}),
+                                    AmbiguousReferenceHolder.AssertHolder);
         }
 
         [Test]
         public void WorksWithArraysHoldingDerivedTypes() {
-            SerialiseAndDeserialise(new object[] {1, 2, "222", new AmbiguousReferenceHolder(new string[] {})}, XStreamAssert.AreEqual);
+            SerialiseAndDeserialise(new object[] {1, 2, "222", new AmbiguousReferenceHolder(new string[] {})},
+                                    XStreamAssert.AreEqual);
         }
 
         [Test]

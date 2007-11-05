@@ -13,7 +13,8 @@ namespace XStream {
 
         [Test]
         public void InstantiatesPublicClassWithNoParameterlessConstructor() {
-            Assert.AreEqual(null, typeof (MarshallingContext).GetConstructor(Constants.BINDINGFlags, null, new Type[0], null));
+            Assert.AreEqual(null,
+                            typeof (MarshallingContext).GetConstructor(Constants.BINDINGFlags, null, new Type[0], null));
             Assert.AreNotEqual(null, DynamicInstanceBuilder.CreateInstance(typeof (MarshallingContext)));
         }
     }
