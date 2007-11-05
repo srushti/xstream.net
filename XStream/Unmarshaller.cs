@@ -7,10 +7,12 @@ namespace XStream {
     internal class Unmarshaller {
         private readonly XStreamReader reader;
         private readonly UnmarshallingContext context;
+        private readonly ConverterLookup converterLookup;
 
-        public Unmarshaller(XStreamReader reader, UnmarshallingContext context) {
+        public Unmarshaller(XStreamReader reader, UnmarshallingContext context, ConverterLookup converterLookup) {
             this.reader = reader;
             this.context = context;
+            this.converterLookup = converterLookup;
         }
 
         internal object Unmarshal(Type type) {
@@ -38,7 +40,7 @@ namespace XStream {
         private object ConvertField(Type fieldType) {
             string classAttribute = reader.GetAttribute(Attributes.classType);
             if (!string.IsNullOrEmpty(classAttribute)) fieldType = Type.GetType(Xmlifier.UnXmlify(classAttribute));
-            Converter converter = ConverterLookup.GetConverter(fieldType);
+            Converter converter = converterLookup.GetConverter(fieldType);
             if (converter != null)
                 return converter.FromXml(reader, context);
             else

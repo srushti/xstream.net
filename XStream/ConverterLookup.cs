@@ -4,54 +4,72 @@ using System.Collections.Generic;
 using XStream.Converters;
 using XStream.Converters.Collections;
 
-namespace XStream {
-    internal class ConverterLookup {
-        private static readonly List<Converter> converters = new List<Converter>();
+namespace XStream
+{
+    internal class ConverterLookup
+    {
+        private static readonly List<Converter> standardConverters = new List<Converter>();
+        private readonly List<Converter> converters = new List<Converter>();
         private static readonly Converter nullConverter = new NullConverter();
 
-        static ConverterLookup() {
-            converters.Add(new SingleValueConverter<int>(int.Parse));
-            converters.Add(new SingleValueConverter<short>(short.Parse));
-            converters.Add(new SingleValueConverter<long>(long.Parse));
-            converters.Add(new SingleValueConverter<double>(double.Parse));
-            converters.Add(new SingleValueConverter<UInt16>(UInt16.Parse));
-            converters.Add(new SingleValueConverter<UInt32>(UInt32.Parse));
-            converters.Add(new SingleValueConverter<UInt64>(UInt64.Parse));
-            converters.Add(new SingleValueConverter<DateTime>(DateTime.Parse));
-            converters.Add(new SingleValueConverter<Single>(Single.Parse));
-            converters.Add(new SingleValueConverter<decimal>(decimal.Parse));
-            converters.Add(new SingleValueConverter<bool>(bool.Parse));
-            converters.Add(new SingleValueConverter<byte>(byte.Parse));
-            converters.Add(new SingleValueConverter<Guid>(delegate(string s) { return new Guid(s); }));
-            converters.Add(new TypeConverter());
-            converters.Add(new SingleValueConverter<string>(delegate(string s) { return s; }));
-            converters.Add(new SingleValueConverter<char>(char.Parse));
-            converters.Add(new EnumConverter());
-            converters.Add(new HashtableConverter());
-            converters.Add(new ArrayConverter());
-            converters.Add(new ListConverter());
+        static ConverterLookup()
+        {
+            standardConverters.Add(new SingleValueConverter<int>(int.Parse));
+            standardConverters.Add(new SingleValueConverter<short>(short.Parse));
+            standardConverters.Add(new SingleValueConverter<long>(long.Parse));
+            standardConverters.Add(new SingleValueConverter<double>(double.Parse));
+            standardConverters.Add(new SingleValueConverter<UInt16>(UInt16.Parse));
+            standardConverters.Add(new SingleValueConverter<UInt32>(UInt32.Parse));
+            standardConverters.Add(new SingleValueConverter<UInt64>(UInt64.Parse));
+            standardConverters.Add(new SingleValueConverter<DateTime>(DateTime.Parse));
+            standardConverters.Add(new SingleValueConverter<Single>(Single.Parse));
+            standardConverters.Add(new SingleValueConverter<decimal>(decimal.Parse));
+            standardConverters.Add(new SingleValueConverter<bool>(bool.Parse));
+            standardConverters.Add(new SingleValueConverter<byte>(byte.Parse));
+            standardConverters.Add(new SingleValueConverter<Guid>(delegate(string s) { return new Guid(s); }));
+            standardConverters.Add(new TypeConverter());
+            standardConverters.Add(new SingleValueConverter<string>(delegate(string s) { return s; }));
+            standardConverters.Add(new SingleValueConverter<char>(char.Parse));
+            standardConverters.Add(new EnumConverter());
+            standardConverters.Add(new HashtableConverter());
+            standardConverters.Add(new ArrayConverter());
+            standardConverters.Add(new ListConverter());
         }
 
-        internal static Converter GetConverter(Type type) {
+        public ConverterLookup()
+        {
+            converters.AddRange(standardConverters);
+        }
+
+        internal Converter GetConverter(Type type)
+        {
             if (type == null) return null;
             foreach (Converter converter in converters)
                 if (converter.CanConvert(type)) return converter;
             return null;
         }
 
-        public static Converter GetConverter(string typeName) {
+        public Converter GetConverter(string typeName)
+        {
             if (typeName.EndsWith("-array")) return GetConverter(typeof (Array));
             if (typeName.EndsWith("-list")) return GetConverter(typeof (ArrayList));
             return GetConverter(PrimitiveClassNamed(typeName));
         }
 
-        private static Type PrimitiveClassNamed(String name) {
+        private static Type PrimitiveClassNamed(String name)
+        {
             return Type.GetType(name);
         }
 
-        public static Converter GetConverter(object value) {
+        public Converter GetConverter(object value)
+        {
             if (value == null) return nullConverter;
             return GetConverter(value.GetType());
+        }
+
+        public void AddConverter(Converter converter)
+        {
+            converters.Add(converter);
         }
     }
 }
