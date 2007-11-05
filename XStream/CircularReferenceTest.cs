@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using NUnit.Framework;
 using XStream.Converters;
 
@@ -22,19 +21,6 @@ namespace XStream {
     <name>clark</name>
 </Person>";
             SerialiseAssertAndDeserialise(clark, serialisedPeople, Person.AssertPersons);
-        }
-
-        [Test]
-        public void s() {
-            Person clark = new Person("clark");
-            Person lois = new Person("lois");
-            clark.likes = lois;
-            lois.likes = clark;
-            ArrayList list = new ArrayList();
-            list.Add(new Person[] {new Person("lex"), clark, lois});
-            list.Add(clark);
-            list.Add(lois);
-            Console.WriteLine(xstream.ToXml(list));
         }
     }
 
