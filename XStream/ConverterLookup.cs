@@ -31,6 +31,7 @@ namespace XStream {
             standardConverters.Add(new HashtableConverter());
             standardConverters.Add(new ArrayConverter());
             standardConverters.Add(new ListConverter());
+            standardConverters.Add(new DictionaryConverter());
         }
 
         public ConverterLookup() {

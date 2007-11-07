@@ -18,6 +18,7 @@ namespace XStream {
 
         public XWriter(StringBuilder stringBuilder) {
             textWriter = new XmlTextWriter(new StringWriter(stringBuilder));
+            ((XmlTextWriter) textWriter).Formatting = Formatting.Indented;
         }
 
         public string CurrentPath {
