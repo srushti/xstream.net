@@ -3,7 +3,7 @@ using System.Collections;
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace XStream {
+namespace xstream {
     internal class DynamicInstanceBuilder {
         private const string prefix = ".xsnet~";
         private static ModuleBuilder moduleBuilder = null;

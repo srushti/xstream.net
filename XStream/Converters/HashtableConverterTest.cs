@@ -1,7 +1,7 @@
 using System.Collections;
 using NUnit.Framework;
 
-namespace XStream.Converters {
+namespace xstream.Converters {
     [TestFixture]
     public class HashtableConverterTest : ConverterTestCase {
         [Test]

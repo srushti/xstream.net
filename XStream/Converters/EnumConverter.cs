@@ -1,6 +1,6 @@
 using System;
 
-namespace XStream.Converters {
+namespace xstream.Converters {
     internal class EnumConverter : Converter {
         public bool CanConvert(Type type) {
             return type.IsEnum;

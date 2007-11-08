@@ -7,7 +7,7 @@
     <ProjectGuid>{9BD43834-B35E-4CB5-B6C1-81547E59A7B4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XStream</RootNamespace>
+    <RootNamespace>xstream</RootNamespace>
     <AssemblyName>XStream</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

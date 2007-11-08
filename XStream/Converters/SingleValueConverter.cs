@@ -1,6 +1,6 @@
 using System;
 
-namespace XStream.Converters {
+namespace xstream.Converters {
     internal class SingleValueConverter<T> : Converter {
         private readonly Parse<T> parse;
 

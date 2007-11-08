@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace XStream {
+namespace xstream {
     internal class Marshaller {
         private readonly XStreamWriter writer;
         private readonly MarshallingContext context;

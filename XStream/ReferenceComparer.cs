@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace XStream {
+namespace xstream {
     internal class ReferenceComparer : IEqualityComparer<object> {
         bool IEqualityComparer<object>.Equals(object x, object y) {
             return x == y;

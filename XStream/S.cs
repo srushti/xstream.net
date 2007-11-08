@@ -1,4 +1,4 @@
-namespace XStream {
+namespace xstream {
     public class S {
         public static string RemoveFrom(string original, string from) {
             int index = original.IndexOf(from);

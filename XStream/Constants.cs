@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace XStream {
+namespace xstream {
     internal class Constants {
         internal static readonly BindingFlags BINDINGFlags = BindingFlags.Public | BindingFlags.NonPublic |
                                                              BindingFlags.Instance |

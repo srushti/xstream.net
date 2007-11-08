@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using NUnit.Framework;
 
-namespace XStream.Converters {
+namespace xstream.Converters {
     [TestFixture]
     public class ObjectConverterTest : ConverterTestCase {
         [Test]

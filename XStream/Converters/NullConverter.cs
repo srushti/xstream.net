@@ -1,6 +1,6 @@
 using System;
 
-namespace XStream.Converters {
+namespace xstream.Converters {
     internal class NullConverter : Converter {
         public bool CanConvert(Type type) {
             return false;

@@ -1,7 +1,7 @@
 using System.Reflection;
 using NUnit.Framework;
 
-namespace XStream.Converters {
+namespace xstream.Converters {
     [TestFixture]
     public class EnumConverterTest : ConverterTestCase {
         [Test]

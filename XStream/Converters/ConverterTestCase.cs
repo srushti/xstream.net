@@ -1,7 +1,7 @@
 using System;
 using NUnit.Framework;
 
-namespace XStream.Converters {
+namespace xstream.Converters {
     public abstract class ConverterTestCase {
         protected XStream xstream = new XStream();
 

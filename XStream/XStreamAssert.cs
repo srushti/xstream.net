@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using NUnit.Framework;
-using XStream.Converters;
-using XStream.Converters.Collections;
+using xstream.Converters;
+using xstream.Converters;
+using xstream.Converters.Collections;
+using xstream.Converters.Collections;
 
-namespace XStream {
+namespace xstream {
     public abstract class XStreamAssert {
         public static void AreEqual(object expected, object actual) {
             Array expectedArray = expected as Array, actualArray = actual as Array;

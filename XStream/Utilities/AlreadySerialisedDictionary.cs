@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace XStream.Utilities {
+namespace xstream.Utilities {
     internal class AlreadySerialisedDictionary {
         private readonly Dictionary<object, string> dictionary = new Dictionary<object, string>(new ReferenceComparer());
 

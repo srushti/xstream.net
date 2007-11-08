@@ -1,8 +1,9 @@
 using System.IO;
 using System.Xml.XPath;
-using XStream.Utilities;
+using xstream.Utilities;
+using xstream.Utilities;
 
-namespace XStream {
+namespace xstream {
     public interface XStreamReader {
         string GetValue();
         string GetNodeName();

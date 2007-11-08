@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace XStream.Utilities {
+namespace xstream.Utilities {
     [TestFixture]
     public class XmlifierTest {
         [Test]

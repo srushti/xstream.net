@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 
-namespace XStream.Converters.Collections {
+namespace xstream.Converters.Collections {
     internal abstract class BaseDictionaryConverter<T> : Converter where T : IDictionary {
         protected const string KEY = "key";
         private const string VALUE = "value";

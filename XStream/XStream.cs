@@ -1,7 +1,7 @@
 using System.Text;
-using XStream.Converters;
+using xstream.Converters;
 
-namespace XStream {
+namespace xstream {
     public class XStream {
         private readonly ConverterLookup converterLookup = new ConverterLookup();
 

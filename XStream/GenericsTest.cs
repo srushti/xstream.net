@@ -1,8 +1,9 @@
 using System;
 using NUnit.Framework;
-using XStream.Converters;
+using xstream.Converters;
+using xstream.Converters;
 
-namespace XStream {
+namespace xstream {
     [TestFixture]
     public class GenericsTest : ConverterTestCase {
         [Test]

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace XStream.Utilities {
+namespace xstream.Utilities {
     internal class XmlStack {
         private readonly Stack<string> nodes = new Stack<string>();
         private string justPopped = string.Empty;

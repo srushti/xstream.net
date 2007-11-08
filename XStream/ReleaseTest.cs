@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using NUnit.Framework;
 
-namespace XStream {
+namespace xstream {
     [TestFixture]
     public class ReleaseTest {
         private static readonly List<Type> publicTypes = new List<Type>();

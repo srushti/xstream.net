@@ -1,7 +1,7 @@
 using System.Collections;
 using NUnit.Framework;
 
-namespace XStream.Converters.Collections {
+namespace xstream.Converters.Collections {
     public abstract class CollectionConverterTestCase : ConverterTestCase {
         public static void ListAsserter(object first, object second) {
             IList firstList = (IList) first;

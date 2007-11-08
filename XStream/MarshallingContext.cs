@@ -1,8 +1,10 @@
 using System;
-using XStream.Converters;
-using XStream.Utilities;
+using xstream.Converters;
+using xstream.Converters;
+using xstream.Utilities;
+using xstream.Utilities;
 
-namespace XStream {
+namespace xstream {
     public class MarshallingContext {
         private readonly AlreadySerialisedDictionary alreadySerialised = new AlreadySerialisedDictionary();
         private readonly XStreamWriter writer;

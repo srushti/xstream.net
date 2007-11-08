@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace XStream {
+namespace xstream {
     [TestFixture]
     public class ReaderTest {
         private XReader reader;

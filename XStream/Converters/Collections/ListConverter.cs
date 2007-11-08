@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 
-namespace XStream.Converters.Collections {
+namespace xstream.Converters.Collections {
     internal class ListConverter : Converter {
         private const string LIST_TYPE = "list-type";
 

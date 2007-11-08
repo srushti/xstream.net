@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
-using XStream.Converters;
+using xstream.Converters;
+using xstream.Converters;
 
-namespace XStream {
+namespace xstream {
     public class UnmarshallingContext {
         private readonly Dictionary<string, object> alreadyDeserialised = new Dictionary<string, object>();
         private readonly XStreamReader reader;

@@ -1,9 +1,11 @@
 using System;
 using System.Reflection;
-using XStream.Converters;
-using XStream.Utilities;
+using xstream.Converters;
+using xstream.Converters;
+using xstream.Utilities;
+using xstream.Utilities;
 
-namespace XStream {
+namespace xstream {
     internal class Unmarshaller {
         private readonly XStreamReader reader;
         private readonly UnmarshallingContext context;

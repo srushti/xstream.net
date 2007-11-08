@@ -1,6 +1,6 @@
 using System;
 
-namespace XStream.Converters.Collections {
+namespace xstream.Converters.Collections {
     internal class ArrayConverter : Converter {
         public bool CanConvert(Type type) {
             return type.IsArray;

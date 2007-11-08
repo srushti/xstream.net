@@ -1,9 +1,10 @@
 using System.IO;
 using System.Text;
 using System.Xml;
-using XStream.Utilities;
+using xstream.Utilities;
+using xstream.Utilities;
 
-namespace XStream {
+namespace xstream {
     public interface XStreamWriter {
         void StartNode(string name);
         void SetValue(string value);

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using NUnit.Framework;
 
-namespace XStream.Converters.Collections {
+namespace xstream.Converters.Collections {
     [TestFixture]
     public class ListConverterTest : CollectionConverterTestCase {
         [Test]

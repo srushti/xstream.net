@@ -1,4 +1,4 @@
-namespace XStream {
+namespace xstream {
     internal class Attributes {
         internal const string AttributeType = "attributeType";
         internal const string references = "references";

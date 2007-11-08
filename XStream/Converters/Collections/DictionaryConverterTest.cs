@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace XStream.Converters.Collections {
+namespace xstream.Converters.Collections {
     [TestFixture]
     public class DictionaryConverterTest : ConverterTestCase {
         [Test]
