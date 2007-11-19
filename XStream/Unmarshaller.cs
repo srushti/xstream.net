@@ -1,8 +1,6 @@
 using System;
 using System.Reflection;
 using xstream.Converters;
-using xstream.Converters;
-using xstream.Utilities;
 using xstream.Utilities;
 
 namespace xstream {
@@ -30,9 +28,7 @@ namespace xstream {
 
         private void UnmarshalAs(object result, Type type) {
             if (type.Equals(typeof (object))) return;
-            FieldInfo[] fields =
-                type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance |
-                               BindingFlags.FlattenHierarchy);
+            FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
             foreach (FieldInfo field in fields) {
                 reader.MoveDown(field.Name);
                 field.SetValue(result, ConvertField(field.FieldType));

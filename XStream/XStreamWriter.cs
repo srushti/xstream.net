@@ -2,7 +2,6 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using xstream.Utilities;
-using xstream.Utilities;
 
 namespace xstream {
     public interface XStreamWriter {

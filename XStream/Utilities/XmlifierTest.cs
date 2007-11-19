@@ -5,12 +5,12 @@ namespace xstream.Utilities {
     public class XmlifierTest {
         [Test]
         public void HandlesGenerics() {
-            Assert.AreEqual("XStream.GenericObject", Xmlifier.UnXmlify(Xmlifier.Xmlify(typeof (GenericObject<int>))));
+            Assert.AreEqual("xstream.GenericObject", Xmlifier.UnXmlify(Xmlifier.Xmlify(typeof (GenericObject<int>))));
         }
 
         [Test]
         public void XmlifiesWithGenerics() {
-            Assert.AreEqual("XStream.GenericObject", Xmlifier.Xmlify(typeof (GenericObject<int>)));
+            Assert.AreEqual("xstream.GenericObject", Xmlifier.Xmlify(typeof (GenericObject<int>)));
         }
     }
 }

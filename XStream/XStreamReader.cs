@@ -1,7 +1,6 @@
 using System.IO;
 using System.Xml.XPath;
 using xstream.Utilities;
-using xstream.Utilities;
 
 namespace xstream {
     public interface XStreamReader {

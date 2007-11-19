@@ -1,7 +1,5 @@
 using System;
 using xstream.Converters;
-using xstream.Converters;
-using xstream.Utilities;
 using xstream.Utilities;
 
 namespace xstream {
@@ -9,10 +7,12 @@ namespace xstream {
         private readonly AlreadySerialisedDictionary alreadySerialised = new AlreadySerialisedDictionary();
         private readonly XStreamWriter writer;
         private readonly ConverterLookup converterLookup;
+        private readonly Aliases aliases;
 
-        internal MarshallingContext(XStreamWriter writer, ConverterLookup converterLookup) {
+        internal MarshallingContext(XStreamWriter writer, ConverterLookup converterLookup, Aliases aliases) {
             this.writer = writer;
             this.converterLookup = converterLookup;
+            this.aliases = aliases;
         }
 
         internal void ConvertAnother(object value) {
@@ -38,6 +38,13 @@ namespace xstream {
 
         private void StartNode(object value) {
             Type type = value != null ? value.GetType() : typeof (object);
+            foreach (Alias alias in aliases) {
+                string nodeAlias;
+                if (alias.TryGetAlias(type, out nodeAlias)) {
+                    writer.StartNode(nodeAlias);
+                    return;
+                }
+            }
             writer.StartNode(Xmlifier.XmlifyNode(type));
             writer.WriteAttribute(Attributes.classType, type.AssemblyQualifiedName);
         }

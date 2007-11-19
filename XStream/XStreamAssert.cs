@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using NUnit.Framework;
 using xstream.Converters;
-using xstream.Converters;
-using xstream.Converters.Collections;
 using xstream.Converters.Collections;
 
 namespace xstream {
@@ -18,8 +16,7 @@ namespace xstream {
             }
             else if (expected is Person && actual is Person) Person.AssertPersons(expected, actual);
             else if (expected is DateTime && actual is DateTime) AssertDateTime(expected, actual);
-            else if (expected is HashtableConverterTest.DerivedHashtable &&
-                     actual is HashtableConverterTest.DerivedHashtable)
+            else if (expected is HashtableConverterTest.DerivedHashtable && actual is HashtableConverterTest.DerivedHashtable)
                 AssertDerivedHashtable(expected, actual);
             else if (expected is Hashtable && actual is Hashtable) AssertHashtable(expected, actual);
             else if (expected is ListConverterTest.DerivedList && actual is ListConverterTest.DerivedList)
@@ -28,16 +25,14 @@ namespace xstream {
         }
 
         private static void AssertDerivedHashtable(object expected, object actual) {
-            HashtableConverterTest.DerivedHashtable expectedHashtable =
-                (HashtableConverterTest.DerivedHashtable) expected,
+            HashtableConverterTest.DerivedHashtable expectedHashtable = (HashtableConverterTest.DerivedHashtable) expected,
                                                     actualHashtable = (HashtableConverterTest.DerivedHashtable) actual;
             Assert.AreEqual(expectedHashtable.x, actualHashtable.x);
             AssertHashtable(expectedHashtable, actualHashtable);
         }
 
         private static void AssertDerivedList(object expected, object actual) {
-            ListConverterTest.DerivedList expectedList = (ListConverterTest.DerivedList) expected,
-                                          actualList = (ListConverterTest.DerivedList) actual;
+            ListConverterTest.DerivedList expectedList = (ListConverterTest.DerivedList) expected, actualList = (ListConverterTest.DerivedList) actual;
             Assert.AreEqual(expectedList.i, actualList.i);
             Assert.AreEqual(expectedList.Count, actualList.Count);
             for (int i = 0; i < actualList.Count; i++) AreEqual(expectedList[i], actualList[i]);
@@ -54,6 +49,18 @@ namespace xstream {
 
         private static void AssertDateTime(object expected, object actual) {
             Assert.AreEqual(expected.ToString(), actual.ToString());
+        }
+
+        public static void Contains(string expectedSubstring, string actual) {
+            Contains(true, actual, expectedSubstring, "doesn't contain");
+        }
+
+        public static void DoesntContain(string expectedSubstring, string actual) {
+            Contains(false, actual, expectedSubstring, "contains");
+        }
+
+        private static void Contains(bool expected, string actual, string expectedSubstring, string subMessage) {
+            Assert.AreEqual(expected, actual.Contains(expectedSubstring), actual + "\n" + subMessage + "\n" + expectedSubstring);
         }
     }
 }

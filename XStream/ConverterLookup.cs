@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using xstream.Converters;
-using xstream.Converters;
-using xstream.Converters.Collections;
 using xstream.Converters.Collections;
 
 namespace xstream {

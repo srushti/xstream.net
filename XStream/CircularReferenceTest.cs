@@ -1,7 +1,6 @@
 using System;
 using NUnit.Framework;
 using xstream.Converters;
-using xstream.Converters;
 
 namespace xstream {
     [TestFixture]
@@ -12,9 +11,8 @@ namespace xstream {
             Person lois = new Person("lois");
             clark.likes = lois;
             lois.likes = clark;
-            string serialisedPeople =
-                @"<Person class=""" + typeof (Person).AssemblyQualifiedName +
-                @""">
+            string serialisedPeople = @"<Person class=""" + typeof (Person).AssemblyQualifiedName +
+                                      @""">
     <likes>
         <likes references=""/Person"" />
         <name>lois</name>

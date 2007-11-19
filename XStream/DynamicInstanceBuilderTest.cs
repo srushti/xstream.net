@@ -1,7 +1,6 @@
 using System;
 using NUnit.Framework;
 using xstream.Converters;
-using xstream.Converters;
 
 namespace xstream {
     [TestFixture]
@@ -14,8 +13,7 @@ namespace xstream {
 
         [Test]
         public void InstantiatesPublicClassWithNoParameterlessConstructor() {
-            Assert.AreEqual(null,
-                            typeof (MarshallingContext).GetConstructor(Constants.BINDINGFlags, null, new Type[0], null));
+            Assert.AreEqual(null, typeof (MarshallingContext).GetConstructor(Constants.BINDINGFlags, null, new Type[0], null));
             Assert.AreNotEqual(null, DynamicInstanceBuilder.CreateInstance(typeof (MarshallingContext)));
         }
     }

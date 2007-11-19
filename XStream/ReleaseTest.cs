@@ -18,8 +18,7 @@ namespace xstream {
         public void AllClassesAreInternal() {
             Type[] allTypes = Assembly.GetExecutingAssembly().GetTypes();
             foreach (Type type in allTypes) {
-                if (type.IsVisible && !publicTypes.Contains(type) && !type.IsInterface && !type.IsAbstract &&
-                    IsNotTest(type) &&
+                if (type.IsVisible && !publicTypes.Contains(type) && !type.IsInterface && !type.IsAbstract && IsNotTest(type) &&
                     type.IsAssignableFrom(typeof (Exception)))
                     Assert.Fail(type + " is visible outside");
             }

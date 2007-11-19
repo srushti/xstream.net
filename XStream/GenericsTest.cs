@@ -1,7 +1,6 @@
 using System;
 using NUnit.Framework;
 using xstream.Converters;
-using xstream.Converters;
 
 namespace xstream {
     [TestFixture]
@@ -78,8 +77,7 @@ namespace xstream {
         }
 
         public override string ToString() {
-            return
-                "value t = " + t + ", u = " + u + "\tgeneric class: " + typeof (T).FullName + ", " + typeof (U).FullName;
+            return "value t = " + t + ", u = " + u + "\tgeneric class: " + typeof (T).FullName + ", " + typeof (U).FullName;
         }
 
         public override int GetHashCode() {

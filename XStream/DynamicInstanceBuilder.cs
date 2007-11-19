@@ -26,9 +26,7 @@ namespace xstream {
 
         private static object GetDynamicInstance(Type type) {
             if (typeof (MulticastDelegate).IsAssignableFrom(type)) {
-                DynamicMethod method =
-                    new DynamicMethod("XStreamDynamicDelegate", typeof (void), GetDelegateParameterTypes(type),
-                                      typeof (object));
+                DynamicMethod method = new DynamicMethod("XStreamDynamicDelegate", typeof (void), GetDelegateParameterTypes(type), typeof (object));
                 ILGenerator generator = method.GetILGenerator();
                 generator.Emit(OpCodes.Ret);
                 return method.CreateDelegate(type);
@@ -42,11 +40,9 @@ namespace xstream {
                 Type dynamicType = typeMap[typeName] as Type;
 
                 if (dynamicType == null) {
-                    TypeBuilder typeBuilder =
-                        ModuleBuilder.DefineType(typeName, TypeAttributes.Class | TypeAttributes.NotPublic, type);
+                    TypeBuilder typeBuilder = ModuleBuilder.DefineType(typeName, TypeAttributes.Class | TypeAttributes.NotPublic, type);
 
-                    ConstructorBuilder cb =
-                        typeBuilder.DefineConstructor(MethodAttributes.Private, CallingConventions.Standard, new Type[0]);
+                    ConstructorBuilder cb = typeBuilder.DefineConstructor(MethodAttributes.Private, CallingConventions.Standard, new Type[0]);
                     cb.GetILGenerator().Emit(OpCodes.Ret);
 
                     dynamicType = typeBuilder.CreateType();
