@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using xstream.Converters;
 
 namespace xstream {
@@ -8,11 +9,13 @@ namespace xstream {
         private readonly XStreamReader reader;
         private readonly ConverterLookup converterLookup;
         private readonly Aliases aliases;
+        private readonly List<Assembly> assemblies;
 
-        internal UnmarshallingContext(XStreamReader reader, ConverterLookup converterLookup, Aliases aliases) {
+        internal UnmarshallingContext(XStreamReader reader, ConverterLookup converterLookup, Aliases aliases, List<Assembly> assemblies) {
             this.reader = reader;
             this.converterLookup = converterLookup;
             this.aliases = aliases;
+            this.assemblies = assemblies;
         }
 
         public object ConvertAnother() {
@@ -41,7 +44,14 @@ namespace xstream {
             }
             string typeName = reader.GetAttribute(Attributes.classType);
             type = Type.GetType(typeName);
-            if (type == null) throw new ConversionException("Couldn't deserialise from " + typeName);
+            if (type == null) {
+                foreach (Assembly assembly in assemblies) {
+                    if (typeName.Substring(typeName.IndexOf(',') + 2).Equals(assembly.FullName))
+                        type = assembly.GetType(typeName.Substring(0, typeName.IndexOf(',')));
+                    if (type != null) break;
+                }
+                if (type == null) throw new ConversionException("Couldn't deserialise from " + typeName);
+            }
             return type;
         }
 

@@ -20,17 +20,13 @@ namespace xstream {
         }
     }
 
-    internal class PersonAlias : Alias {
-        private readonly Type type = typeof (Person);
-
-        public bool TryGetType(string alias, out Type typeToReturn) {
-            typeToReturn = type;
-            return type.Name.Equals(alias);
+    internal class PersonAlias : StandardAlias {
+        protected override Type Type {
+            get { return typeof (Person); }
         }
 
-        public bool TryGetAlias(Type type, out string alias) {
-            alias = type.Name;
-            return type.Equals(type);
+        protected override string Alias {
+            get { return Type.Name; }
         }
     }
 }
