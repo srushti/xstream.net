@@ -19,6 +19,7 @@ namespace xstream {
             if (type.Equals(typeof (object))) return;
             FieldInfo[] fields = type.GetFields(Constants.BINDINGFlags);
             foreach (FieldInfo field in fields) {
+                if (field.GetCustomAttributes(typeof (DontSerialiseAttribute), true).Length != 0) continue;
                 writer.StartNode(field.Name);
                 WriteClassNameIfNeedBe(value, field);
                 context.ConvertAnother(field.GetValue(value));

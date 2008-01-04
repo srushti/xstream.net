@@ -30,6 +30,7 @@ namespace xstream {
             if (type.Equals(typeof (object))) return;
             FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
             foreach (FieldInfo field in fields) {
+                if (field.GetCustomAttributes(typeof(DontSerialiseAttribute), true).Length != 0) continue;
                 reader.MoveDown(field.Name);
                 field.SetValue(result, ConvertField(field.FieldType));
                 reader.MoveUp();

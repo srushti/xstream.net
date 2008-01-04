@@ -44,6 +44,8 @@
     <Compile Include="Converters\Collections\BaseDictionaryConverter.cs" />
     <Compile Include="Converters\Collections\DictionaryConverter.cs" />
     <Compile Include="Converters\Collections\DictionaryConverterTest.cs" />
+    <Compile Include="DontSerialiseAttribute.cs" />
+    <Compile Include="DontSerialiseAttributeTest.cs" />
     <Compile Include="MiscellaneousTest.cs" />
     <Compile Include="Utilities\AlreadySerialisedDictionary.cs" />
     <Compile Include="Attributes.cs" />
