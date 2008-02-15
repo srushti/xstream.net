@@ -37,17 +37,23 @@ namespace xstream {
         }
 
         private Type TypeToUse(string nodeName) {
-            Type type;
             foreach (Alias alias in aliases) {
+                Type type;
                 if (alias.TryGetType(nodeName, out type))
                     return type;
             }
             string typeName = reader.GetAttribute(Attributes.classType);
-            type = Type.GetType(typeName);
+            return GetTypeFromOtherAssemblies(typeName);
+        }
+
+        internal Type GetTypeFromOtherAssemblies(string typeName) {
+            Type type = Type.GetType(typeName);
+            int indexOfComma = typeName.IndexOf(',');
+            string assemblyName = typeName.Substring(indexOfComma + 2);
+            string actualTypeName = typeName.Substring(0, indexOfComma);
             if (type == null) {
                 foreach (Assembly assembly in assemblies) {
-                    if (typeName.Substring(typeName.IndexOf(',') + 2).Equals(assembly.FullName))
-                        type = assembly.GetType(typeName.Substring(0, typeName.IndexOf(',')));
+                    if (assemblyName.Equals(assembly.FullName)) type = assembly.GetType(actualTypeName);
                     if (type != null) break;
                 }
                 if (type == null) throw new ConversionException("Couldn't deserialise from " + typeName);
