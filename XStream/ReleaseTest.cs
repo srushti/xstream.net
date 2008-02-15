@@ -12,6 +12,7 @@ namespace xstream {
             publicTypes.Add(typeof (XStream));
             publicTypes.Add(typeof (MarshallingContext));
             publicTypes.Add(typeof (UnmarshallingContext));
+            publicTypes.Add(typeof (DontSerialiseAttribute));
         }
 
         [Test]
@@ -19,7 +20,7 @@ namespace xstream {
             Type[] allTypes = Assembly.GetExecutingAssembly().GetTypes();
             foreach (Type type in allTypes) {
                 if (type.IsVisible && !publicTypes.Contains(type) && !type.IsInterface && !type.IsAbstract && IsNotTest(type) &&
-                    type.IsAssignableFrom(typeof (Exception)))
+                    !typeof(Exception).IsAssignableFrom(type))
                     Assert.Fail(type + " is visible outside");
             }
         }

@@ -20,6 +20,7 @@ namespace xstream {
             FieldInfo[] fields = type.GetFields(Constants.BINDINGFlags);
             foreach (FieldInfo field in fields) {
                 if (field.GetCustomAttributes(typeof (DontSerialiseAttribute), true).Length != 0) continue;
+                if (typeof (MulticastDelegate).IsAssignableFrom(field.FieldType)) continue;
                 writer.StartNode(field.Name);
                 WriteClassNameIfNeedBe(value, field);
                 context.ConvertAnother(field.GetValue(value));

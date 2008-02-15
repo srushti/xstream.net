@@ -36,6 +36,11 @@ namespace xstream.Converters {
         public void HandlesPrivateFieldsOfBaseClassWithSameName() {
             SerialiseAndDeserialise(new DerivedObject());
         }
+
+        [Test]
+        public void DoesntConvertDelegates() {
+            SerialiseAndDeserialise(new ObjectWithEvent());
+        }
     }
 
     internal class DerivedObject : BaseObject {
@@ -184,6 +189,26 @@ namespace xstream.Converters {
                 return builder.ToString();
             }
             return "ambiguousreferenceholder with " + o;
+        }
+    }
+
+    internal class ObjectWithEvent : IEquatable<ObjectWithEvent> {
+        internal event VoidDelegate SomeEvent = delegate { };
+
+        internal delegate void VoidDelegate();
+
+        public bool Equals(ObjectWithEvent objectWithEvent) {
+            if (objectWithEvent == null) return false;
+            return true;
+        }
+
+        public override bool Equals(object obj) {
+            if (ReferenceEquals(this, obj)) return true;
+            return Equals(obj as ObjectWithEvent);
+        }
+
+        public override int GetHashCode() {
+            return 0;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace xstream {
         bool TryGetAlias(Type type, out string aliasToReturn);
     }
 
-    public class Aliases : List<Alias> {}
+    internal class Aliases : List<Alias> {}
 
     public abstract class StandardAlias : Alias {
         public bool TryGetType(string alias, out Type typeToReturn) {
