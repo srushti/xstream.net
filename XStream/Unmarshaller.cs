@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using System.Xml.Serialization;
 using xstream.Converters;
 using xstream.Utilities;
 
@@ -31,6 +32,7 @@ namespace xstream {
             FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
             foreach (FieldInfo field in fields) {
                 if (field.GetCustomAttributes(typeof(DontSerialiseAttribute), true).Length != 0) continue;
+                if (field.GetCustomAttributes(typeof(XmlIgnoreAttribute), true).Length != 0) continue;
                 if (typeof(MulticastDelegate).IsAssignableFrom(field.FieldType)) continue;
                 reader.MoveDown(field.Name);
                 field.SetValue(result, ConvertField(field.FieldType));

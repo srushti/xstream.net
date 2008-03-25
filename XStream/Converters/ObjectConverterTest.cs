@@ -198,13 +198,11 @@ namespace xstream.Converters {
         internal delegate void VoidDelegate();
 
         public bool Equals(ObjectWithEvent objectWithEvent) {
-            if (objectWithEvent == null) return false;
-            return true;
+            return objectWithEvent != null;
         }
 
         public override bool Equals(object obj) {
-            if (ReferenceEquals(this, obj)) return true;
-            return Equals(obj as ObjectWithEvent);
+            return ReferenceEquals(this, obj) || Equals(obj as ObjectWithEvent);
         }
 
         public override int GetHashCode() {

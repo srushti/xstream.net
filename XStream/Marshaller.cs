@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using System.Xml.Serialization;
 
 namespace xstream {
     internal class Marshaller {
@@ -20,6 +21,7 @@ namespace xstream {
             FieldInfo[] fields = type.GetFields(Constants.BINDINGFlags);
             foreach (FieldInfo field in fields) {
                 if (field.GetCustomAttributes(typeof (DontSerialiseAttribute), true).Length != 0) continue;
+                if (field.GetCustomAttributes(typeof (XmlIgnoreAttribute), true).Length != 0) continue;
                 if (typeof (MulticastDelegate).IsAssignableFrom(field.FieldType)) continue;
                 writer.StartNode(field.Name);
                 WriteClassNameIfNeedBe(value, field);
