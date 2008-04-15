@@ -19,7 +19,7 @@ namespace xstream.Utilities {
 
         public void Push(string node) {
             if (justPopped.Equals(node)) node = node + "[1]";
-            Match match = Regex.Match(justPopped, node + @"\[(\d)\]");
+            Match match = Regex.Match(justPopped, node + @"\[(\d+)\]");
             if (match.Success) node = node + "[" + (int.Parse(match.Result("$1")) + 1) + "]";
             nodes.Push(node);
         }

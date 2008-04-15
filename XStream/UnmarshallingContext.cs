@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using xstream.Converters;
 
@@ -62,7 +63,12 @@ namespace xstream {
         }
 
         public void StackObject(object value) {
-            alreadyDeserialised.Add(reader.CurrentPath, value);
+            try {
+                alreadyDeserialised.Add(reader.CurrentPath, value);
+            }
+            catch (ArgumentException e) {
+                throw new ConversionException("Couldn't add " + reader.CurrentPath, e);
+            }
         }
 
         public object Find() {

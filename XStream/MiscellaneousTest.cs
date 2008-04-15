@@ -6,11 +6,17 @@ namespace xstream {
     public class MiscellaneousTest : ConverterTestCase {
         [Test]
         public void DoesntSerialiseConstants() {
-            Assert.AreEqual(false, xstream.ToXml(new ObjectWithConstant()).Contains(ObjectWithConstant.constant));
+            Assert.AreEqual(false, xstream.ToXml(new ObjectWithConstantAndStatic()).Contains(ObjectWithConstantAndStatic.constant));
         }
 
-        private class ObjectWithConstant {
+        [Test]
+        public void DoesntSerialiseStatics() {
+            Assert.AreEqual(false, xstream.ToXml(new ObjectWithConstantAndStatic()).Contains(ObjectWithConstantAndStatic.stat));
+        }
+
+        private class ObjectWithConstantAndStatic {
             public const string constant = "Some stupid constant";
+            public static readonly string stat = "Some stupid static";
         }
     }
 }
