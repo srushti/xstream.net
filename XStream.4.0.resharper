@@ -1,4 +1,8 @@
 <Configuration>
+  <CodeAnnotations>
+    <Namespace>JetBrains.Annotations</Namespace>
+    <DefaultNamespace>JetBrains.Annotations</DefaultNamespace>
+  </CodeAnnotations>
   <CodeStyleSettings>
     <Sharing>SOLUTION</Sharing>
     <ExternalPath>
@@ -174,10 +178,12 @@
         <PLACE_SIMPLE_ACCESSORHOLDER_ON_SINGLE_LINE>False</PLACE_SIMPLE_ACCESSORHOLDER_ON_SINGLE_LINE>
         <PLACE_SIMPLE_ACCESSOR_ON_SINGLE_LINE>True</PLACE_SIMPLE_ACCESSOR_ON_SINGLE_LINE>
         <PLACE_SIMPLE_ANONYMOUSMETHOD_ON_SINGLE_LINE>True</PLACE_SIMPLE_ANONYMOUSMETHOD_ON_SINGLE_LINE>
+        <PLACE_SIMPLE_LINQ_ON_SINGLE_LINE>True</PLACE_SIMPLE_LINQ_ON_SINGLE_LINE>
         <PLACE_TYPE_ATTRIBUTE_ON_SAME_LINE>False</PLACE_TYPE_ATTRIBUTE_ON_SAME_LINE>
         <PLACE_METHOD_ATTRIBUTE_ON_SAME_LINE>False</PLACE_METHOD_ATTRIBUTE_ON_SAME_LINE>
         <PLACE_ACCESSORHOLDER_ATTRIBUTE_ON_SAME_LINE>False</PLACE_ACCESSORHOLDER_ATTRIBUTE_ON_SAME_LINE>
         <PLACE_FIELD_ATTRIBUTE_ON_SAME_LINE>True</PLACE_FIELD_ATTRIBUTE_ON_SAME_LINE>
+        <PLACE_TYPE_CONSTRAINTS_ON_SAME_LINE>True</PLACE_TYPE_CONSTRAINTS_ON_SAME_LINE>
         <PLACE_CONSTRUCTOR_INITIALIZER_ON_SAME_LINE>True</PLACE_CONSTRUCTOR_INITIALIZER_ON_SAME_LINE>
         <INDENT_ANONYMOUS_METHOD_BLOCK>True</INDENT_ANONYMOUS_METHOD_BLOCK>
         <INDENT_EMBRACED_INITIALIZER_BLOCK>True</INDENT_EMBRACED_INITIALIZER_BLOCK>
@@ -296,7 +302,7 @@
     <LiveTemplates>
       <Template uid="c0b95d48-cef0-4b84-af46-f8ee7db232c2" text="[Test]&#xD;&#xA;public void $MethodName$(){&#xD;&#xA;$END$Assert.Fail(&quot;not yet implemented&quot;);&#xD;&#xA;}" shortcut="test" description="create test method" reformat="true" shortenQualifiedReferences="true">
         <Context>
-          <CSharpContext context="TypeMember" />
+          <CSharpContext context="TypeMember" minimumLanguageVersion="2.0" />
         </Context>
         <Categories>
           <Category name="Shared Solution Templates" />
@@ -309,7 +315,7 @@
       </Template>
       <Template uid="2c169869-acf1-44ec-9f51-41a15347a6c0" text="[SetUp]&#xD;&#xA;public void SetUp()&#xD;&#xA;{&#xD;&#xA;   &#xD;&#xA;}" shortcut="setup" description="test setup" reformat="true" shortenQualifiedReferences="true">
         <Context>
-          <CSharpContext context="TypeMember" />
+          <CSharpContext context="TypeMember" minimumLanguageVersion="2.0" />
         </Context>
         <Categories>
           <Category name="Shared Solution Templates" />
@@ -423,7 +429,7 @@
       </Template>
       <Template uid="47ea7ee1-75c9-4ac3-8dbe-d0e56113df42" text="Assert.AreEqual(null, $ACTUAL$);" shortcut="assn" description="assert null" reformat="true" shortenQualifiedReferences="true">
         <Context>
-          <CSharpContext context="Expression" />
+          <CSharpContext context="Expression" minimumLanguageVersion="2.0" />
         </Context>
         <Categories>
           <Category name="Shared Solution Templates" />
@@ -480,7 +486,7 @@
       </Template>
       <Template uid="1fea2159-c282-43f7-b324-917e37b89cbd" text="//todo:$END$" shortcut="todo" description="" reformat="true" shortenQualifiedReferences="true">
         <Context>
-          <CSharpContext context="Everywhere" />
+          <CSharpContext context="Everywhere" minimumLanguageVersion="2.0" />
         </Context>
         <Categories>
           <Category name="Shared Solution Templates" />
