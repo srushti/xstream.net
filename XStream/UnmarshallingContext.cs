@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Reflection;
 using xstream.Converters;
 
@@ -50,9 +49,9 @@ namespace xstream {
         internal Type GetTypeFromOtherAssemblies(string typeName) {
             Type type = Type.GetType(typeName);
             int indexOfComma = typeName.IndexOf(',');
-            string assemblyName = typeName.Substring(indexOfComma + 2);
-            string actualTypeName = typeName.Substring(0, indexOfComma);
             if (type == null) {
+                string assemblyName = typeName.Substring(indexOfComma + 2);
+                string actualTypeName = typeName.Substring(0, indexOfComma);
                 foreach (Assembly assembly in assemblies) {
                     if (assemblyName.Equals(assembly.FullName)) type = assembly.GetType(actualTypeName);
                     if (type != null) break;
@@ -67,7 +66,7 @@ namespace xstream {
                 alreadyDeserialised.Add(reader.CurrentPath, value);
             }
             catch (ArgumentException e) {
-                throw new ConversionException("Couldn't add " + reader.CurrentPath, e);
+                throw new ConversionException(string.Format("Couldn't add path:{0}, value: {1}", reader.CurrentPath, value), e);
             }
         }
 

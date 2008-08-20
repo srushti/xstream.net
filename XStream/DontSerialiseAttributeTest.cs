@@ -14,11 +14,9 @@ namespace xstream {
         }
 
         private class ObjectUsingDontSerialiseAttribute {
-#pragma warning disable RedundantDefaultFieldInitializer
-            public readonly object toBeSerialised = null;
-            [DontSerialise] public readonly object notToBeSerialised = null;
-            [XmlIgnore] public readonly object alsoNotToBeSerialised = null;
-#pragma warning restore RedundantDefaultFieldInitializer
+            public readonly object toBeSerialised;
+            [DontSerialise] public readonly object notToBeSerialised;
+            [XmlIgnore] public readonly object alsoNotToBeSerialised;
 
             private ObjectUsingDontSerialiseAttribute() {}
 
