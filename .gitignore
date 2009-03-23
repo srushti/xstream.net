@@ -1,0 +1,12 @@
+*.user
+*.aps
+*.ncb
+*.suo
+*.bak
+*.cache
+*.log
+[Bb]in
+[Db]ebug*/
+obj/
+[Rr]elease*/
+_ReSharper*/
