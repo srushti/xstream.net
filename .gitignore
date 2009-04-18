@@ -10,3 +10,8 @@
 obj/
 [Rr]elease*/
 _ReSharper*/
+*.swp
+*.userprefs
+*.usertasks
+*.pidb
+test-results/
