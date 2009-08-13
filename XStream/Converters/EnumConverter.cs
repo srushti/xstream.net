@@ -7,7 +7,7 @@ namespace xstream.Converters {
         }
 
         public void ToXml(object value, XStreamWriter writer, MarshallingContext context) {
-            writer.WriteAttribute(Attributes.AttributeType, value.GetType());
+            writer.WriteAttribute(Attributes.AttributeType, value.GetType().AssemblyQualifiedName);
             writer.SetValue(value.ToString());
         }
 
