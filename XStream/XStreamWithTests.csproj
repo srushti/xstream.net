@@ -2,9 +2,9 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9BD43834-B35E-4CB5-B6C1-81547E59A7B4}</ProjectGuid>
+    <ProjectGuid>{5C5B2DDC-8653-44F7-ACBE-B66E8754C146}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>xstream</RootNamespace>
@@ -36,40 +36,65 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.2.7.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alias.cs" />
+    <Compile Include="AliasTest.cs" />
     <Compile Include="Converters\Collections\BaseDictionaryConverter.cs" />
     <Compile Include="Converters\Collections\DictionaryConverter.cs" />
+    <Compile Include="Converters\Collections\DictionaryConverterTest.cs" />
     <Compile Include="DontSerialiseAttribute.cs" />
+    <Compile Include="DontSerialiseAttributeTest.cs" />
+    <Compile Include="MiscellaneousTest.cs" />
     <Compile Include="Utilities\AlreadySerialisedDictionary.cs" />
     <Compile Include="Attributes.cs" />
+    <Compile Include="CircularReferenceTest.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="ConversionException.cs" />
     <Compile Include="ConverterLookup.cs" />
     <Compile Include="Converters\Collections\ArrayConverter.cs" />
+    <Compile Include="Converters\Collections\ArrayConverterTest.cs" />
+    <Compile Include="Converters\Collections\CollectionConverterTestCase.cs" />
+    <Compile Include="Converters\Collections\ListConverterTest.cs" />
     <Compile Include="Converters\Converter.cs" />
+    <Compile Include="Converters\ConverterTestCase.cs" />
     <Compile Include="Converters\EnumConverter.cs" />
+    <Compile Include="Converters\EnumConverterTest.cs" />
+    <Compile Include="Converters\HashtableConverterTest.cs" />
+    <Compile Include="Converters\NullConverterTest.cs" />
+    <Compile Include="Converters\SingleValueConverterTest.cs" />
     <Compile Include="Converters\Collections\ListConverter.cs" />
     <Compile Include="Converters\NullConverter.cs" />
+    <Compile Include="Converters\ObjectConverterTest.cs" />
     <Compile Include="Converters\SingleValueConverter.cs" />
     <Compile Include="Converters\TypeConverter.cs" />
     <Compile Include="DynamicInstanceBuilder.cs" />
+    <Compile Include="DynamicInstanceBuilderTest.cs" />
+    <Compile Include="GenericsTest.cs" />
     <Compile Include="Converters\Collections\HashtableConverter.cs" />
     <Compile Include="Marshaller.cs" />
     <Compile Include="MarshallingContext.cs" />
+    <Compile Include="ReaderTest.cs" />
     <Compile Include="ReferenceComparer.cs" />
+    <Compile Include="ReleaseTest.cs" />
     <Compile Include="S.cs" />
     <Compile Include="TODO.cs" />
     <Compile Include="Unmarshaller.cs" />
     <Compile Include="UnmarshallingContext.cs" />
     <Compile Include="Utilities\Xmlifier.cs" />
+    <Compile Include="Utilities\XmlifierTest.cs" />
     <Compile Include="Utilities\XmlStack.cs" />
+    <Compile Include="Utilities\XmlStackTest.cs" />
     <Compile Include="XStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XStreamAssert.cs" />
     <Compile Include="XStreamReader.cs" />
     <Compile Include="XStreamWriter.cs" />
   </ItemGroup>
