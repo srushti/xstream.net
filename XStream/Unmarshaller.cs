@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 using xstream.Converters;
 using xstream.Utilities;
@@ -30,13 +31,23 @@ namespace xstream {
         private void UnmarshalAs(object result, Type type) {
             if (type.Equals(typeof (object))) return;
             FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
-            foreach (FieldInfo field in fields) {
-                if (field.GetCustomAttributes(typeof(DontSerialiseAttribute), true).Length != 0) continue;
-                if (field.GetCustomAttributes(typeof(XmlIgnoreAttribute), true).Length != 0) continue;
-                if (typeof(MulticastDelegate).IsAssignableFrom(field.FieldType)) continue;
-                reader.MoveDown(field.Name);
-                field.SetValue(result, ConvertField(field.FieldType));
-                reader.MoveUp();
+            foreach (var field in fields) {
+                if (field.GetCustomAttributes(typeof (DontSerialiseAttribute), true).Length != 0) continue;
+                if (field.GetCustomAttributes(typeof (XmlIgnoreAttribute), true).Length != 0) continue;
+                if (typeof (MulticastDelegate).IsAssignableFrom(field.FieldType)) continue;
+                Match match = Constants.AutoPropertyNamePattern.Match(field.Name);
+                if (match.Success) {
+                    var propertyName = match.Result("$1");
+                    reader.MoveDown(propertyName);
+                    PropertyInfo property = type.GetProperty(propertyName);
+                    property.SetValue(result, ConvertField(field.FieldType), null);
+                    reader.MoveUp();
+                }
+                else {
+                    reader.MoveDown(field.Name);
+                    field.SetValue(result, ConvertField(field.FieldType));
+                    reader.MoveUp();
+                }
             }
             UnmarshalAs(result, type.BaseType);
         }

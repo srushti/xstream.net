@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 
 namespace xstream {
@@ -19,11 +20,14 @@ namespace xstream {
         private void MarshalAs(object value, Type type) {
             if (type.Equals(typeof (object))) return;
             FieldInfo[] fields = type.GetFields(Constants.BINDINGFlags);
-            foreach (FieldInfo field in fields) {
+            foreach (var field in fields) {
+                string nodeName = field.Name;
+                Match match = Constants.AutoPropertyNamePattern.Match(field.Name);
+                if (match.Success) nodeName = match.Result("$1");
                 if (field.GetCustomAttributes(typeof (DontSerialiseAttribute), true).Length != 0) continue;
                 if (field.GetCustomAttributes(typeof (XmlIgnoreAttribute), true).Length != 0) continue;
                 if (typeof (MulticastDelegate).IsAssignableFrom(field.FieldType)) continue;
-                writer.StartNode(field.Name);
+                writer.StartNode(nodeName);
                 WriteClassNameIfNeedBe(value, field);
                 context.ConvertAnother(field.GetValue(value));
                 writer.EndNode();

@@ -7,7 +7,7 @@ namespace xstream {
     public class DontSerialiseAttributeTest : ConverterTestCase {
         [Test]
         public void DoesntSerialiseFieldWithAttribute() {
-            ObjectUsingDontSerialiseAttribute o = (ObjectUsingDontSerialiseAttribute) xstream.FromXml(xstream.ToXml(new ObjectUsingDontSerialiseAttribute(10, 20, 30)));
+            var o = (ObjectUsingDontSerialiseAttribute) xstream.FromXml(xstream.ToXml(new ObjectUsingDontSerialiseAttribute(10, 20, 30)));
             Assert.AreEqual(10, o.toBeSerialised);
             Assert.AreEqual(null, o.notToBeSerialised);
             Assert.AreEqual(null, o.alsoNotToBeSerialised);
