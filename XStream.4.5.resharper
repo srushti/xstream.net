@@ -1,0 +1,349 @@
+<Configuration>
+  <CodeStyleSettings>
+    <ExternalPath IsNull="False">
+    </ExternalPath>
+    <Sharing>SOLUTION</Sharing>
+    <CSharp>
+      <FormatSettings>
+        <ANONYMOUS_METHOD_DECLARATION_BRACES>END_OF_LINE</ANONYMOUS_METHOD_DECLARATION_BRACES>
+        <CASE_BLOCK_BRACES>END_OF_LINE</CASE_BLOCK_BRACES>
+        <EMPTY_BLOCK_STYLE>TOGETHER_SAME_LINE</EMPTY_BLOCK_STYLE>
+        <FORCE_FIXED_BRACES_STYLE>ONLY_FOR_MULTILINE</FORCE_FIXED_BRACES_STYLE>
+        <FORCE_FOR_BRACES_STYLE>ONLY_FOR_MULTILINE</FORCE_FOR_BRACES_STYLE>
+        <FORCE_FOREACH_BRACES_STYLE>ONLY_FOR_MULTILINE</FORCE_FOREACH_BRACES_STYLE>
+        <FORCE_IFELSE_BRACES_STYLE>ONLY_FOR_MULTILINE</FORCE_IFELSE_BRACES_STYLE>
+        <FORCE_USING_BRACES_STYLE>ONLY_FOR_MULTILINE</FORCE_USING_BRACES_STYLE>
+        <FORCE_WHILE_BRACES_STYLE>ONLY_FOR_MULTILINE</FORCE_WHILE_BRACES_STYLE>
+        <INDENT_SIZE>4</INDENT_SIZE>
+        <INVOCABLE_DECLARATION_BRACES>END_OF_LINE</INVOCABLE_DECLARATION_BRACES>
+        <KEEP_BLANK_LINES_IN_CODE>1</KEEP_BLANK_LINES_IN_CODE>
+        <KEEP_BLANK_LINES_IN_DECLARATIONS>1</KEEP_BLANK_LINES_IN_DECLARATIONS>
+        <KEEP_USER_LINEBREAKS>False</KEEP_USER_LINEBREAKS>
+        <MODIFIERS_ORDER IsNull="False">
+          <Item>public</Item>
+          <Item>protected</Item>
+          <Item>internal</Item>
+          <Item>private</Item>
+          <Item>new</Item>
+          <Item>abstract</Item>
+          <Item>virtual</Item>
+          <Item>override</Item>
+          <Item>sealed</Item>
+          <Item>static</Item>
+          <Item>readonly</Item>
+          <Item>extern</Item>
+          <Item>unsafe</Item>
+          <Item>volatile</Item>
+        </MODIFIERS_ORDER>
+        <OTHER_BRACES>END_OF_LINE</OTHER_BRACES>
+        <SPACE_BEFORE_ATTRIBUTE_COLON>True</SPACE_BEFORE_ATTRIBUTE_COLON>
+        <TYPE_DECLARATION_BRACES>END_OF_LINE</TYPE_DECLARATION_BRACES>
+        <WRAP_LIMIT>157</WRAP_LIMIT>
+      </FormatSettings>
+      <UsingsSettings />
+      <Naming2 />
+    </CSharp>
+    <VB>
+      <FormatSettings>
+        <INDENT_SIZE>4</INDENT_SIZE>
+      </FormatSettings>
+      <ImportsSettings />
+      <Naming2 />
+    </VB>
+    <GenerateMemberBody />
+    <Naming2>
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="Locals" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="PrivateInstanceFields" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="PrivateStaticFields" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="Parameters" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="MethodPropertyEvent" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="TypesAndNamespaces" />
+      <PredefinedRule Inspect="True" Prefix="I" Suffix="" Style="AaBb" ElementKind="Interfaces" />
+      <PredefinedRule Inspect="True" Prefix="T" Suffix="" Style="AaBb" ElementKind="TypeParameters" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="LocalConstants" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="PublicFields">
+        <ExtraRule Prefix="" Suffix="" Style="AaBb" />
+      </PredefinedRule>
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="Constants" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="PrivateConstants" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="StaticReadonly" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="PrivateStaticReadonly" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="EnumMember" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="Other" />
+      <Abbreviation Text="BINDING" />
+    </Naming2>
+  </CodeStyleSettings>
+  <SharedSolutionTemplateManager>
+    <LiveTemplates>
+      <Template uid="c0b95d48-cef0-4b84-af46-f8ee7db232c2" shortcut="test" description="create test method" text="[Test]&#xD;&#xA;public void $MethodName$(){&#xD;&#xA;$END$Assert.Fail(&quot;not yet implemented&quot;);&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="TypeMember" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Test" />
+        </Categories>
+        <Variables>
+          <Variable name="MethodName" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="2c169869-acf1-44ec-9f51-41a15347a6c0" shortcut="setup" description="test setup" text="[SetUp]&#xD;&#xA;public void SetUp()&#xD;&#xA;{&#xD;&#xA;   &#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="TypeMember" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Test" />
+        </Categories>
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="c65b5493-6e50-4b69-8fe1-1c8a2cc5527d" shortcut="mocks" description="Create Mock Repostory and call replay all" text="MockRepository mocks = new MockRepository();&#xD;&#xA;$OBJECTTYPE$ $OBJECTNAME$ = mocks.CreateMock&lt;$OBJECTTYPE$&gt;();&#xD;&#xA;mocks.ReplayAll();" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Test" />
+        </Categories>
+        <Variables>
+          <Variable name="OBJECTTYPE" expression="" initialRange="0" />
+          <Variable name="OBJECTNAME" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="2cc28028-eca2-4032-9bc8-1aeb5f579eda" shortcut="mock" description="Create a new mock" text="$OBJECTTYPE$ $OBJECTNAME$ = mocks.CreateMock&lt;$OBJECTTYPE$&gt;();" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Test" />
+        </Categories>
+        <Variables>
+          <Variable name="OBJECTTYPE" expression="" initialRange="0" />
+          <Variable name="OBJECTNAME" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="6a0c888a-c1d3-48b8-870e-11db25a52349" shortcut="asse" description="assert equals" text="Assert.AreEqual($expected$, $actual$);" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Test" />
+        </Categories>
+        <Variables>
+          <Variable name="expected" expression="" initialRange="0" />
+          <Variable name="actual" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="43f591b7-6022-4a34-865b-f10039aff28a" shortcut="asst" description="Assert Is True" text="Assert.AreEqual(true, $ACTUAL$);" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Test" />
+        </Categories>
+        <Variables>
+          <Variable name="ACTUAL" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="6dfa7645-42d1-4738-b4c4-601c0f1c1f7c" shortcut="setr" description="SetUp Result" text="SetupResult.For($METHODCALL$).Return($RETURNVALUE$);" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Test" />
+        </Categories>
+        <Variables>
+          <Variable name="METHODCALL" expression="" initialRange="0" />
+          <Variable name="RETURNVALUE" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="fa639f9e-dd50-4451-8411-99b19a11f328" shortcut="assf" description="" text="Assert.AreEqual(false, $ACTUAL$);" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Test" />
+        </Categories>
+        <Variables>
+          <Variable name="ACTUAL" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="694e56a0-2990-48d1-9483-2d9f49f4f558" shortcut="expect" description="Expectation" text="Expect.Call($method$).Return($returnValue$);" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Test" />
+        </Categories>
+        <Variables>
+          <Variable name="method" expression="" initialRange="0" />
+          <Variable name="returnValue" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="f010ec15-53f7-4b36-b65f-b4b3f83d286d" shortcut="assnn" description="assert not null" text="Assert.AreNotEqual(null, $ACTUAL$);" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Test" />
+        </Categories>
+        <Variables>
+          <Variable name="ACTUAL" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="58d87d29-a52c-4441-9cfa-e3849a5f96f3" shortcut="tear" description="" text="[TearDown]&#xD;&#xA;public void TearDown()&#xD;&#xA;{&#xD;&#xA;$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Test" />
+        </Categories>
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="170a07d0-4b54-410f-8de9-6d25d9d3e44e" shortcut="aine" description="" text="Assert.IsNotEmpty($1$);" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Test" />
+        </Categories>
+        <Variables>
+          <Variable name="1" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="47ea7ee1-75c9-4ac3-8dbe-d0e56113df42" shortcut="assn" description="assert null" text="Assert.AreEqual(null, $ACTUAL$);" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="Expression" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Test" />
+        </Categories>
+        <Variables>
+          <Variable name="ACTUAL" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="aba8f0d6-b7aa-46fc-8ef8-62b37ee0fd6f" shortcut="assne" description="" text="Assert.AreNotEqual($NOTEXPECTED$, $ACTUAL$);" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Test" />
+        </Categories>
+        <Variables>
+          <Variable name="NOTEXPECTED" expression="" initialRange="0" />
+          <Variable name="ACTUAL" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="8b0dc558-2fb5-4f85-9f4f-b97a301d8a63" shortcut="cont" description="" text="            LunarAssert.Contains($EXPECTED$, $ACTUAL$);" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Test" />
+        </Categories>
+        <Variables>
+          <Variable name="EXPECTED" expression="guessExpectedType()" initialRange="0" />
+          <Variable name="ACTUAL" expression="guessExpectedType()" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="ed3bf2bb-42df-443a-bc00-fbe46b760a27" shortcut="code" description="code path" text="CodePath.Get(CodePath.New&lt;$var1$&gt;().$var2$)" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Trace" />
+        </Categories>
+        <Variables>
+          <Variable name="var1" expression="guessExpectedType()" initialRange="0" />
+          <Variable name="var2" expression="suggestVariableName()" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="e1294e36-3cfd-4cdb-bf15-cad3dcfa3c09" shortcut="path" description="trace member path" text="Trace.MemberPath(Trace.New&lt;$var1$&gt;().$var2$)" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Trace" />
+        </Categories>
+        <Variables>
+          <Variable name="var1" expression="guessExpectedType()" initialRange="0" />
+          <Variable name="var2" expression="suggestVariableName()" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="1fea2159-c282-43f7-b324-917e37b89cbd" shortcut="todo" description="" text="//todo:$END$" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="Everywhere" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="Trace" />
+        </Categories>
+        <Variables />
+        <CustomProperties />
+      </Template>
+    </LiveTemplates>
+    <Surrounds>
+      <Template uid="e414d8f5-9ab9-4cad-88dc-12101fbf2eb0" shortcut="" description="typof" text="typeof=($SELECTION$)" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+        </Categories>
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="b6cdff72-2f9d-4e06-b343-4fea2328211c" shortcut="" description="toString" text="&quot;$SELECTION$&quot;" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+        </Categories>
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="be4d5716-42a1-49d0-a8ad-723bb350c855" shortcut="" description="()" text="($SELECTION$)" reformat="True" shortenQualifiedReferences="True">
+        <Categories>
+          <Category name="Shared Solution Templates" />
+        </Categories>
+        <Variables />
+        <CustomProperties />
+      </Template>
+    </Surrounds>
+    <FileTemplates>
+      <Template uid="04d38fb1-9e45-4aab-8549-443358f414d6" shortcut="Class" description="Test" text="using NUnit.Framework;&#xD;&#xA;&#xD;&#xA;namespace $NAMESPACE$&#xD;&#xA;{&#xD;&#xA;  [TestFixture]&#xD;&#xA;  public class $CLASS$ &#xD;&#xA;  {&#xD;&#xA;    test$END$&#xD;&#xA;  }&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <ProjectLanguageContext language="CSharp" />
+        </Context>
+        <Categories>
+          <Category name="Shared Solution Templates" />
+        </Categories>
+        <Variables>
+          <Variable name="CLASS" expression="getFileNameWithoutExtension()" initialRange="-1" />
+          <Variable name="NAMESPACE" expression="fileDefaultNamespace()" initialRange="-1" />
+        </Variables>
+        <CustomProperties>
+          <Property key="FileName" value="Test" />
+          <Property key="Extension" value="cs" />
+        </CustomProperties>
+      </Template>
+      <Template uid="19cc012c-37d3-4909-8392-395490f7b7ea" shortcut="Class" description="Exception" text="using System;&#xD;&#xA;&#xD;&#xA;namespace $NAMESPACE$&#xD;&#xA;{&#xD;&#xA;  public class $CLASS$ : Exception&#xD;&#xA;  {&#xD;&#xA;      public $CLASS$(string message) : base(message) {}&#xD;&#xA;      public $CLASS$(string message, Exception exception) : base(message, exception) {}&#xD;&#xA;  }&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <ProjectLanguageContext language="CSharp" />
+        </Context>
+        <Categories>
+          <Category name="Shared Solution Templates" />
+        </Categories>
+        <Variables>
+          <Variable name="CLASS" expression="getFileNameWithoutExtension()" initialRange="-1" />
+          <Variable name="NAMESPACE" expression="fileDefaultNamespace()" initialRange="-1" />
+        </Variables>
+        <CustomProperties>
+          <Property key="FileName" value="Exception" />
+          <Property key="Extension" value="cs" />
+        </CustomProperties>
+      </Template>
+      <Template uid="e2ccf159-b674-4b56-9548-379e73079651" shortcut="Class" description="UI Item" text="using System.Windows.Automation;&#xD;&#xA;&#xD;&#xA;namespace $NAMESPACE$&#xD;&#xA;{&#xD;&#xA;  public class $CLASS$ : UIItem&#xD;&#xA;  {&#xD;&#xA;   public $CLASS$(AutomationElement automationElement) : base(automationElement){}&#xD;&#xA;  }&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <ProjectLanguageContext language="CSharp" />
+        </Context>
+        <Categories>
+          <Category name="Shared Solution Templates" />
+          <Category name="UIAutomation" />
+        </Categories>
+        <Variables>
+          <Variable name="CLASS" expression="getFileNameWithoutExtension()" initialRange="-1" />
+          <Variable name="NAMESPACE" expression="fileDefaultNamespace()" initialRange="-1" />
+        </Variables>
+        <CustomProperties>
+          <Property key="FileName" value="Test" />
+          <Property key="Extension" value="cs" />
+        </CustomProperties>
+      </Template>
+    </FileTemplates>
+  </SharedSolutionTemplateManager>
+</Configuration>
