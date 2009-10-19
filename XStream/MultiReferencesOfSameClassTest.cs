@@ -10,12 +10,10 @@ namespace xstream
         [Test]
         public void ShouldSerializeWithClassAttributes() {
             var bar1 = new BarClass { Name = "bar1" };
-            var bar2 = new BarClass { Name = "bar2" };
-            var bar3 = new BarClass { Name = "bar3" };
-
+            
             var testFoo = new FooClassWithMultipleBarReferences {
                 TheBestBar = bar1,
-                TheOtherBars = new List<BarClass> { bar2, bar3 }
+                TheOtherBars = new List<BarClass>()
             };
             SerialiseAndDeserialise(testFoo);
         }
@@ -29,7 +27,9 @@ namespace xstream
         public bool Equals(FooClassWithMultipleBarReferences barClass) {
             if (ReferenceEquals(null, barClass)) return false;
             if (ReferenceEquals(this, barClass)) return true;
-            return Equals(barClass.TheBestBar, TheBestBar) && Equals(barClass.TheOtherBars, TheOtherBars);
+            return Equals(barClass.TheBestBar, TheBestBar) && 
+				barClass.TheOtherBars != null &&
+				barClass.TheOtherBars.Count == TheOtherBars.Count;
         }
 
         public override bool Equals(object obj) {
