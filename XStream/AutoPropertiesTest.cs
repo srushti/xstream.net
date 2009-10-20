@@ -10,7 +10,7 @@ namespace xstream {
             SerialiseAndDeserialise(objectWithAnAutoProperty);
         }
 
-        public class ClassWithAnAutoProperty {
+        internal class ClassWithAnAutoProperty {
             public int AutoProperty { get; set; }
 
             private bool Equals(ClassWithAnAutoProperty other) {

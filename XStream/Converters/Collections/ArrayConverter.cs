@@ -21,12 +21,14 @@ namespace xstream.Converters.Collections {
         public object FromXml(XStreamReader reader, UnmarshallingContext context) {
             int count = reader.NoOfChildren();
             Array result = Array.CreateInstance(context.GetTypeFromOtherAssemblies(reader.GetAttribute(ARRAY_TYPE)), count);
-            reader.MoveDown();
-            for (int i = 0; i < count; i++) {
-                result.SetValue(context.ConvertOriginal(), i);
-                reader.MoveNext();
+            if (count != 0) {
+                reader.MoveDown();
+                for (int i = 0; i < count; i++) {
+                    result.SetValue(context.ConvertOriginal(), i);
+                    reader.MoveNext();
+                }
+                reader.MoveUp();
             }
-            reader.MoveUp();
             return result;
         }
     }
