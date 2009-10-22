@@ -15,3 +15,4 @@ _ReSharper*/
 *.usertasks
 *.pidb
 test-results/
+*.DS_Store
