@@ -1,0 +1,8 @@
+This is an xml serialiser written for .net applications. It is largely a port of Joe Walnes' original written for Java.
+
+The usage is:
+  new XStream().ToXml(obj);
+
+  new XStream().FromXml(xml);
+
+There is also support for custom converters.
