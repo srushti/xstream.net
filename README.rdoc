@@ -1,0 +1,17 @@
+= XStream.Net 0.9.0
+
+(c) Copyright 2007-2010 {Srushtivratha Ambekallu}[http://blog.ambekallu.com]. All Rights Reserved.
+
+XStream.Net is largely a port of Joe Walnes original {XStream}[http://xstream.codehaus.org/] project written for Java. The current version is a result of multiple iterations on a real world project and is currently in production use.
+
+== Example
+
+  new XStream().ToXml(obj);
+
+  new XStream().FromXml(xml);
+
+There is also support for custom converters.
+
+== Licence
+
+XStream.Net is released under the Apache 2.0 licence
