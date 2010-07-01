@@ -32,7 +32,7 @@ namespace xstream.Converters {
             SerialiseAndDeserialise(new object[] {1, 2, "222", new AmbiguousReferenceHolder(new string[] {})}, XStreamAssert.AreEqual);
         }
 
-        [Test]
+        [Test, Ignore("Test for functionality not yet built")]
         public void HandlesPrivateFieldsOfBaseClassWithSameName() {
             SerialiseAndDeserialise(new DerivedObject());
         }
