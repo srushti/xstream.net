@@ -61,7 +61,7 @@ namespace xstream {
         }
 
         public void AddConverter(Converter converter) {
-            converters.Add(converter);
+            converters.Insert(0, converter);
         }
     }
 }
